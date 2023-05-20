@@ -28,6 +28,7 @@ class Server(db.Model):
             'name': self.name,
             'images': self.images,
             'owner_id': self.owner_id,
+            'members' : [user.to_dict() for user in self.members],
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }
