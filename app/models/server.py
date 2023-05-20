@@ -23,12 +23,21 @@ class Server(db.Model):
     channels = db.relationship('Channel', back_populate='servers')
 
     def to_dict_server(self):
+        if len(self.channels):
+            channel = self.channels[0].to_dict_channel()
+            channel_id = channel['id']
+
         return {
             'id': self.id,
             'name': self.name,
             'images': self.images,
             'owner_id': self.owner_id,
             'members' : [user.to_dict() for user in self.members],
+            'list_member': [user.to_dict() for user in self.members],
+            'channels': {channel_id: self.channels[0].to_dict_channel()} if len(self.channels) else {},
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }
+    
+    def member_id(self):
+        return [user.id for user in self.members]
