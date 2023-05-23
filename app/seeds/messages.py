@@ -7,13 +7,13 @@ fake = Faker()
 
 def seed_messages():
     for i in range (0, 200):
-        channel_id = db.session.query(Channel.id).order_by(func.random()).all()[0]
-        owner_id = db.session(User.id).order_by(func.random()).all()[0]
+        channel_id = db.session.query(Channel.id).order_by(func.random()).first()[0]
+        owner_id = db.session.query(User.id).order_by(func.random()).first()[0]
         server_id = db.session.get(Channel, channel_id).server_id
 
         seed_data = Message(
             channel_id = channel_id,
-            content = fake.sentence(nb_sentence = 5),
+            content = fake.paragraph(nb_sentences=5),
             owner_id = owner_id
         )
 

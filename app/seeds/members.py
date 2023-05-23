@@ -12,10 +12,10 @@ def seed_members():
         user_id = 1, server_id = 2
     )
     member4 = Member(
-        user_id = 2, server_id = 3
+        user_id = 2, server_id = 1
     )
     member5 = Member(
-        user_id = 3, server_id = 2
+        user_id = 1, server_id = 2
     )
 
     db.session.add(member1)

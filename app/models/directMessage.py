@@ -18,8 +18,5 @@ class Direct_Message(db.Model):
     created_at = db.Column(db.DateTime(), nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime(), onupdate=func.now(), default=func.now())
 
-    user = db.relationship('User', back_populate='direct_messages')
-    friend = db.relationship('Friend', back_populate='direct_messages')
-
-
-
+    user = db.relationship('User', back_populates ='direct_messages')
+    friend = db.relationship('Friend', back_populates ='direct_messages')

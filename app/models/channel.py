@@ -13,13 +13,13 @@ class Channel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
-    server_id = db.Column(db.Integer, db.ForeignKey('servers.id', nullable=False))
+    server_id = db.Column(db.Integer, db.ForeignKey('servers.id'), nullable = False)
     description = db.Column(db.String)
     created_at = db.Column(db.DateTime(), nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime(), onupdate=func.now(), default=func.now())
 
-    servers = db.relationship('Server', back_populate='channels')
-    messages = db.relationship('Message', back_populates='channels')
+    servers = db.relationship('Server', back_populates = 'channels')
+    messages = db.relationship('Message', back_populates = 'channels')
 
 
     def to_dict_channel(self):

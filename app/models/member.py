@@ -13,5 +13,8 @@ class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     server_id = db.Column(db.Integer, db.ForeignKey('servers.id'), nullable=False)
-    created_at = db.Column(db.DateTime(), nullable=False, server_default=func.now())
+    created_at = db.Column(db.DateTime(), server_default=func.now())
     updated_at = db.Column(db.DateTime(), onupdate=func.now(), default=func.now())
+
+    # users = db.relationship('User', back_populates ='members')
+    # servers = db.relationship('Server', back_populates = 'members')

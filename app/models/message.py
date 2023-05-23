@@ -18,8 +18,8 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime(), nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime(), onupdate=func.now(), default=func.now())
 
-    users = db.relationship('User', back_populates='messages')
-    channels = db.relationship('Channel', back_populates='messages')
+    users = db.relationship('User', back_populates ='messages')
+    channels = db.relationship('Channel', back_populates ='messages')
 
 
     def to_dict_message(self):
