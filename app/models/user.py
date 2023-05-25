@@ -2,6 +2,10 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Enum, ForeignKey, DateTime
+
 
 
 class User(db.Model, UserMixin):
@@ -14,14 +18,20 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    images = db.Column(db.String)
+    profile_picture = db.Column(db.String(255))
     created_at = db.Column(db.DateTime(), nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime(), onupdate=func.now(), default=func.now())
 
+    servers_owned = db.relationship('Server', backref='owner',cascade="all, delete")
 
-    servers = db.relationship('Server', back_populates='users')
-    members = db.relationship('Server', secondary=add_prefix_for_prod('members'), back_populates='users')
-    messages = db.relationship('Message', back_populates='users')
+    server_member = db.relationship('ServerMember', backref='member')
+
+    channel_member = db.relationship('ChannelMember', backref='member')
+
+    channel_messages_sent = db.relationship('ChannelMessage', backref='sender',cascade="all, delete")
+
+    channels_owned = db.relationship('Channel', backref='owner', cascade='all, delete')
+
 
     @property
     def password(self):
@@ -39,7 +49,32 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'images': self.images,
+            'profile_picture': self.profile_picture,
+            'server_owned': {server.id: server.to_resource_dict() for server in self.servers_owned},
+            'server_member': {member.server_id: member.server.to_dict() for member in self.server_member},
+            'channel_member': {room.id: room.channel.to_dict() for room in self.channel_member},
+            'dm_channel_owner': { channel.id: channel.to_resource_dict() for channel in self.channels_owned if channel.dm_channel == True  },
+            'dm_members': {member.id: member.channel.to_dict() for member in self.channel_member if member.channel.dm_channel == True},
             'created_at': self.created_at.strftime('%m/%d/%Y %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y %H:%M:%S')
         }
+    def to_resource_dict(self):
+        return {
+        'id': self.id,
+        'username': self.username,
+        'email':self.email,
+        'profilePicture': self.profile_picture,
+    }
+    
+    def in_server(self, server_id):
+        for server in self.server_member:
+            if server.server_id == server_id:
+                return True
+        return False
+
+    def in_channel(self, channel_id):
+
+        for channel in self.channel_member:
+            if channel.channel_id == channel_id:
+                return True
+        return False

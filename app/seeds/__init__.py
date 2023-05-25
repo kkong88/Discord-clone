@@ -1,9 +1,9 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .servers import seed_servers, undo_servers
-from .channels import seed_channels, undo_channels
-from .members import seed_members, undo_members
-from .messages import seed_messages, undo_messages
+from .servers import seed_servers, undo_servers, seed_server_members, undo_server_members
+from .channels import seed_channels, undo_channels, seed_channel_messages, undo_seed_messages, seed_dm
+from .channelMembers import seed_channel_members, undo_channel_members
+
 
 from app.models.db import db, environment, SCHEMA
 
@@ -22,14 +22,17 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
         undo_servers()
+        undo_server_members()
+        undo_seed_messages()
+        undo_channel_members()
         undo_channels()
-        # undo_members()
-        undo_messages()
     seed_users()
     seed_servers()
+    seed_server_members()
     seed_channels()
-    # seed_members()
-    seed_messages()
+    seed_channel_members()
+    seed_channel_messages()
+    seed_dm()
 
     # Add other seed functions here
 
@@ -40,6 +43,7 @@ def undo():
     undo_users()
     # Add other undo functions here
     undo_servers()
+    undo_server_members()
     undo_channels()
-    # undo_members()
-    undo_messages()
+    undo_channel_members()
+    undo_seed_messages()

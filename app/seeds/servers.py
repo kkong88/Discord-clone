@@ -1,29 +1,36 @@
-from app.models import db, Server, User, Member, SCHEMA, environment
+from app.models import db, Server, User, ServerMember, SCHEMA, environment
 from sqlalchemy.sql import func, text
-
-from app.models import db, Server, User, Member
 from sqlalchemy.sql.expression import func
 
 
 def seed_servers():
     server1 = Server(
         name = 'The Boys',
-        images = 'Example.jpg',
+        server_picture = 'Example.jpg',
+        description = 'Hello Welcome',
         owner_id = 1
+    )
+    server2 = Server(
+        name = 'App Academy',
+        server_picture = 'TEST.jpg',
+        description = 'Have Fun',
+        owner_id = 2
     )
 
     db.session.add(server1)
+    db.session.add(server2)
     db.session.commit()
 
+def seed_server_members():
     for i in range(1, 1):
-        members = Member(
+        members = ServerMember(
             user_id = i,
             server_id = 1
         )
         db.session.add(members)
         db.session.commit()
 
-    for j in range(1,10):
+    for j in range(1,5):
         print(j, "______J LOOOP__________")
         random_user_id = db.session.query(User.id).order_by(func.random()).first()[0]
         print(random_user_id, "______RANDOM______")
@@ -34,24 +41,24 @@ def seed_servers():
         db.session.add(seed_server)
         db.session.commit()
 
-        member1 = Member(
+        member1 = ServerMember(
             user_id = 1,
             server_id = j
         )
         print(member1, "_____MEMBER1")
-        member2 = Member(
+        member2 = ServerMember(
             user_id = 2,
             server_id = j
         )
-        member3 = Member(
+        member3 = ServerMember(
             user_id = 3,
             server_id = j
         )
-        member4 = Member(
+        member4 = ServerMember(
             user_id = 4,
             server_id = j
         )
-        member5 = Member(
+        member5 = ServerMember(
             user_id = 5,
             server_id = j
         )
@@ -68,5 +75,14 @@ def undo_servers():
         db.session.execute(f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM servers"))
+
+    db.session.commit()
+
+
+def undo_server_members():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.serversMembers RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM serversMembers"))
 
     db.session.commit()

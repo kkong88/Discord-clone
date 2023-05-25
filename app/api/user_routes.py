@@ -5,7 +5,7 @@ from app.models import User, Server
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/@me')
+@user_routes.route('/')
 @login_required
 def users():
     """
