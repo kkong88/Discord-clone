@@ -6,7 +6,6 @@ from app.models import User, Server, ServerMember, Channel, ChannelMember,Channe
 
 servers_routes = Blueprint('servers', __name__)
 
-servers_routes = Blueprint('servers', __name__)
 @servers_routes.route('/', methods=['GET', 'POST'])
 def get_all_or_post_to_servers():
 
