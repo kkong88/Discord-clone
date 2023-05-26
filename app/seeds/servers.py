@@ -22,7 +22,7 @@ def seed_servers():
     db.session.commit()
 
 def seed_server_members():
-    for i in range(1, 1):
+    for i in range(1, 2):
         members = ServerMember(
             user_id = i,
             server_id = 1
@@ -30,7 +30,7 @@ def seed_server_members():
         db.session.add(members)
         db.session.commit()
 
-    for j in range(1,5):
+    for j in range(1,2):
         print(j, "______J LOOOP__________")
         random_user_id = db.session.query(User.id).order_by(func.random()).first()[0]
         print(random_user_id, "______RANDOM______")
@@ -81,8 +81,8 @@ def undo_servers():
 
 def undo_server_members():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.serversMembers RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.serverMembers RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM serversMembers"))
+        db.session.execute(text("DELETE FROM serverMembers"))
 
     db.session.commit()

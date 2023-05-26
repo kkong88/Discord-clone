@@ -39,28 +39,28 @@ def seed_dm():
 
 def seed_channel_messages():
     # i === channels
-    for i in range(1, 10):
+    for i in range(1, 2):
         channel = Channel.query.get(i)
-        if channel.name == 'TEST':
+        if channel.name == 'Test':
             message = ChannelMessage(channel_id=i, sender_id=1, content=f'Welcome to {channel.server.name}\'s Server')
             db.session.add(message)
         else:
             message = ChannelMessage(channel_id=i, sender_id=1, content=f'Welcome to {channel.server.name}\'s Channel {channel.name}')
             db.session.add(message)
         #  x === users
-        for x in range(2, 19):
+        for x in range(2, 4):
                 # users 2-3 channels 1-3
-            if x < 9 and i < 4:
+            if x < 4 and i < 2:
                 message = ChannelMessage(channel_id=i, sender_id=x, content='test')
                 db.session.add(message)
-                # users 9 - 13 channels 4-6
-            elif (x >= 9 and x < 14) and i <= 6 and i > 3:
-                message = ChannelMessage(channel_id=i, sender_id=x, content='test')
-                db.session.add(message)
-                # users 13 - 18  channels 7-9
-            elif (x > 13 and x < 19) and i <= 9 and i > 6:
-                message = ChannelMessage(channel_id=i, sender_id=x, content='test')
-                db.session.add(message)
+            #     # users 9 - 13 channels 4-6
+            # elif (x >= 9 and x < 14) and i <= 6 and i > 3:
+            #     message = ChannelMessage(channel_id=i, sender_id=x, content='test')
+            #     db.session.add(message)
+            #     # users 13 - 18  channels 7-9
+            # elif (x > 13 and x < 19) and i <= 9 and i > 6:
+            #     message = ChannelMessage(channel_id=i, sender_id=x, content='test')
+            #     db.session.add(message)
 
     db.session.add(channel)
     db.session.commit()
