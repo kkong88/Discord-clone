@@ -8,7 +8,7 @@ servers_routes = Blueprint('servers', __name__)
 
 
 #get all servers
-@servers_routes.route('',)
+@servers_routes.route('')
 def get_to_servers():
 
         servers= db.session.query(Server).all()
@@ -20,7 +20,7 @@ def get_to_servers():
 def get_one_server(server_id):
 
     server = Server.query.get(server_id)
-    return server.to_dict()
+    return {'server': {server.id: server.to_dict()}}
 
 #create a server
 @servers_routes.route('', methods = ['POST'])
@@ -38,7 +38,7 @@ def post_to_servers():
         db.session.add(channel)
         db.session.commit()
 
-        first_message = ChannelMessage(channel_id = channel.id, sender_id=1, content = f'Welcome to {server.name}\'s Server')
+        first_message = ChannelMessage(channel_id = channel.id, sender_id=current_user.id, content = f'Welcome to {server.name}\'s Server')
         db.session.add(first_message)
         db.session.commit()
 
@@ -79,14 +79,15 @@ def get_all_server_members(server_id):
 def post_server_member(server_id):
         server = Server.query.get(server_id)
 
-        test_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'Test').first()
+        # test_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'Test').first()
+        test_channel = Channel.query.filter_by(server_id=server_id).first()
         data = request.json
         joining_member = User.query.get(data['userId'])
         data = request.json
         member = ServerMember(server_id=server_id, user_id=data['userId'])
         db.session.add(member)
 
-        first_message = ChannelMessage(channel_id=test_channel.id, sender_id=1, content=f'{joining_member.username} welcome to the server')
+        first_message = ChannelMessage(channel_id=test_channel.id, sender_id=server.owner_id, content=f'{joining_member.username} welcome to the server')
         db.session.add(first_message)
         db.session.commit()
 
@@ -95,10 +96,12 @@ def post_server_member(server_id):
 #delete a server member
 @servers_routes.route('/<int:server_id>/members/<int:member_id>', methods=['DELETE'])
 def delete_server_member(server_id, member_id):
-    server_general_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'General').first()
+
+#     server_general_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'Test').first()
+    server_general_channel = Channel.query.filter_by(server_id=server_id).first()
     member = ServerMember.query.get(member_id)
     db.session.delete(member)
-    leaving_message = ChannelMessage(channel_id=server_general_channel.id, sender_id=1, content=f'{member.member.username} has left the server')
+    leaving_message = ChannelMessage(channel_id=server_general_channel.id, sender_id = server_general_channel.server.owner_id, content=f'{member.member.username} has left the server')
     db.session.add(leaving_message)
     db.session.commit()
     return {'memberId': member_id, 'serverId': server_general_channel.server_id }
@@ -107,7 +110,7 @@ def delete_server_member(server_id, member_id):
 
 @servers_routes.route('/<int:server_id>/channels')
 def get_channel(server_id):
-        
+
         channels= Channel.query.filter(Channel.server_id == server_id).all()
 
         return {'channels': {channel.id:channel.to_resource_dict() for channel in channels}}

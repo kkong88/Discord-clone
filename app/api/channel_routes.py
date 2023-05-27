@@ -19,16 +19,18 @@ def get_one_channel(channel_id):
     return channel.to_dict()
 
 @channel_routes.route('<int:channel_id>', methods = ['POST'])
-def post_to_channel(server_id):
+def post_a_channel(channel_id):
 
         data = request.json
+
         channel = Channel(name = data['name'], server_id = data['serverId'])
         db.session.add(channel)
         db.session.commit()
+
         message = ChannelMessage(channel_id=channel.id, sender_id=1, content=f'Welcome to {channel.server.name}\'s Channel {channel.name}')
         db.session.add(message)
-
         db.session.commit()
+
         return channel.to_dict()
 
 
@@ -69,7 +71,6 @@ def post_channel_message(channel_id):
 @channel_routes.route('/<int:channel_id>/members')
 def get_channel_members(channel_id):
 
-    if request.method == 'GET':
         channel_members= ChannelMember.query.filter(ChannelMember.channel_id == channel_id).all()
 
         return {'channelMembers': {member.id:member.to_dict() for member in channel_members}}

@@ -11,7 +11,7 @@ import datetime
 
 def find_general_channel_id (channels):
     for channel in channels:
-        if channel.name == 'General':
+        if channel.name == 'Test':
            return channel.id
 
 
@@ -38,7 +38,7 @@ class Server(db.Model):
             'picture': self.server_picture,
             'name': self.name,
             'description': self.description,
-            'channels':{channel.id: channel.to_resource_dict() for channel in self.channels},
+            'channels':{channel.id: channel.to_dict() for channel in self.channels},
             'members': {member.id: member.to_dict() for member in self.members},
             'generalChannelId': find_general_channel_id(self.channels),
             'membersLength': len(self.members),
