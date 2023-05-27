@@ -53,14 +53,6 @@ def seed_channel_messages():
             if x < 4 and i < 2:
                 message = ChannelMessage(channel_id=i, sender_id=x, content='test')
                 db.session.add(message)
-            #     # users 9 - 13 channels 4-6
-            # elif (x >= 9 and x < 14) and i <= 6 and i > 3:
-            #     message = ChannelMessage(channel_id=i, sender_id=x, content='test')
-            #     db.session.add(message)
-            #     # users 13 - 18  channels 7-9
-            # elif (x > 13 and x < 19) and i <= 9 and i > 6:
-            #     message = ChannelMessage(channel_id=i, sender_id=x, content='test')
-            #     db.session.add(message)
 
     db.session.add(channel)
     db.session.commit()

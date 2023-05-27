@@ -50,8 +50,6 @@ class Server(db.Model):
             'picture': self.server_picture,
             'name': self.name,
             'description': self.description,
-            'generalChannelId': self.channels[0].id,
+            'generalChannelId': self.channels[0].id if self.channels else None,
             'membersLength': len(self.members),
         }
-
-

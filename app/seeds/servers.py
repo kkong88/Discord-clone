@@ -31,9 +31,7 @@ def seed_server_members():
         db.session.commit()
 
     for j in range(1,2):
-        print(j, "______J LOOOP__________")
         random_user_id = db.session.query(User.id).order_by(func.random()).first()[0]
-        print(random_user_id, "______RANDOM______")
         seed_server = Server(
             name=f'Server {j}',
             owner_id = random_user_id
@@ -45,7 +43,6 @@ def seed_server_members():
             user_id = 1,
             server_id = j
         )
-        print(member1, "_____MEMBER1")
         member2 = ServerMember(
             user_id = 2,
             server_id = j
