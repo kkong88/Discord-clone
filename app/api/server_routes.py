@@ -115,15 +115,15 @@ def get_channel(server_id):
 
         return {'channels': {channel.id:channel.to_resource_dict() for channel in channels}}
 
-# @servers_routes.route('/<int:server_id>/channels', methods = ['POST'])
-# def post_to_channel(server_id):
+@servers_routes.route('/<int:server_id>/channels', methods = ['POST'])
+def post_to_channel(server_id):
 
-#         data = request.json
-#         channel = Channel(name = data['name'], server_id = data['serverId'])
-#         db.session.add(channel)
-#         db.session.commit()
-#         message = ChannelMessage(channel_id=channel.id, sender_id=1, content=f'Welcome to {channel.server.name}\'s Channel {channel.name}')
-#         db.session.add(message)
+        data = request.json
+        channel = Channel(name = data['name'], server_id = data['serverId'])
+        db.session.add(channel)
+        db.session.commit()
+        message = ChannelMessage(channel_id=channel.id, sender_id=1, content=f'Welcome to {channel.server.name}\'s Channel {channel.name}')
+        db.session.add(message)
 
-#         db.session.commit()
-#         return channel.to_dict()
+        db.session.commit()
+        return channel.to_dict()
