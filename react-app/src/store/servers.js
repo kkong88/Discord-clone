@@ -1,3 +1,4 @@
+import { setChannels } from "./channels";
 const SET_SERVERS = 'servers/SetServers'
 const REMOVE_ALL_SERVERS = 'logout/RemoveServers'
 const USER_SERVERS = 'server/UserServers'
@@ -117,7 +118,7 @@ export const serverDetail = (serverId) => async (dispatch) => {
     const result = await fetch(`/api/servers/${serverId}`)
     const singleServer = await result.json()
     dispatch(currentServer(singleServer))
-    //add channel
+    dispatch(setChannels(singleServer.channels))
     return singleServer
 }
 
@@ -136,7 +137,7 @@ export const updateCurrentServer = (serverId, formData) => async (dispatch) => {
     const update = await result.json()
     dispatch(updateCurrentServer(update))
     dispatch(editUserServer(update))
-    //dispatch channels
+    dispatch(setChannels(update))
 
     return update.picture
 }
