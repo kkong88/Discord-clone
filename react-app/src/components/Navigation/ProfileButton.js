@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
+import { logout, login } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -33,6 +33,12 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
   };
+
+  const Demologin = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@demo.com", "password")).then(() => {});
+  };
+
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
