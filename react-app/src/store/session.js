@@ -1,4 +1,5 @@
 // constants
+import { setUserServers } from "./servers";
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
@@ -26,6 +27,7 @@ export const authenticate = () => async (dispatch) => {
 		}
 
 		dispatch(setUser(data));
+		dispatch(setUserServers(data.serverMember))
 	}
 };
 
@@ -44,6 +46,7 @@ export const login = (email, password) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
+		dispatch(setUserServers(data.serverMember))
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
@@ -83,6 +86,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
+		dispatch(setUserServers(data.serverMember))
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
@@ -93,6 +97,25 @@ export const signUp = (username, email, password) => async (dispatch) => {
 		return ["An error occurred. Please try again."];
 	}
 };
+
+export const demoLogin = () => async (dispatch) => {
+	const response = await fetch("/api/auth/login", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			email: "demo@aa.io",
+			password: "password",
+		}),
+	})
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(setUser(data));
+		return null;
+}
+}
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {

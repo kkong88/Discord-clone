@@ -40,6 +40,7 @@ export const logoutChannels = () => {
 export const postChannel = (channel) => async (dispatch) => {
   const res = await fetch(`/api/servers/${channel.serverId}/channels`, {
     method: "POST",
+    headers: {"Content-Type" : "application/json"},
     body: JSON.stringify(channel),
   });
 
@@ -63,6 +64,7 @@ export const putChannel = (channel) => async (dispatch) => {
   const res = await fetch(`/api/servers/${channel.serverId}/channels/${channel.id}`,
     {
       method: "PUT",
+      headers: {"Content-Type" : "application/json"},
       body: JSON.stringify(channel),
     }
   );
@@ -104,7 +106,7 @@ export const getOneChannel = (channelId) => async (dispatch) => {
 
   const channel = await result.json();
   dispatch(setCurrentChannel(channel));
-  dispatch(setMessages(channel.messages));
+  // dispatch(setMessages(channel.messages));
   return channel;
 };
 
