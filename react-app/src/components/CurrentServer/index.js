@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import CurrentChannel from "../CurrentChannel";
 import { getAServer } from "../../store/servers";
 
 const CurrentServer = () => {
@@ -32,7 +33,12 @@ const CurrentServer = () => {
 
       return (
         loaded && (
-
+          <div>
+             <div className="one_channel">
+            {channelLoaded && (
+              <CurrentChannel channelsObj={channelsObj} className="one_channel" />
+            )}
+          </div>
               <div className="members_container">
                 <h1>MEMBERS</h1>
                 {channelLoaded && (
@@ -42,8 +48,8 @@ const CurrentServer = () => {
                     className="members"
                   />
                 )}
+                </div>
               </div>
-
         )
       );
     };

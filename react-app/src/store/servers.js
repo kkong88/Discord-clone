@@ -250,22 +250,30 @@ export const getAllServers = () => async (dispatch) => {
 
 // sets servers the user belongs in the store
 export const setUserServers = (servers) => {
-    return { type: SET_USER_SERVERS, servers };
+    return {
+      type: SET_USER_SERVERS,
+      servers
+    };
   };
 
 
 // adds a server the user joined in the store
 export const addUserServer = (server) => {
-    return { type: ADD_USER_SERVER, server };
+    return {
+      type: ADD_USER_SERVER,
+      server
+    };
   };
 // adds user to an existing server they just joined
 export const joinUserServer = (serverId, userId) => async (dispatch) => {
+
   const res = await fetch(`/api/servers/${serverId}/members`, {
     method: "POST",
     headers: {"Content-Type" : "application/json"},
     body: JSON.stringify({ serverId, userId }),
   });
     const data = await res.json();
+    console.log(data)
     dispatch(addUserServer(data.server));
     return data.server;
   };

@@ -106,7 +106,7 @@ export const getOneChannel = (channelId) => async (dispatch) => {
 
   const channel = await result.json();
   dispatch(setCurrentChannel(channel));
-  // dispatch(setMessages(channel.messages));
+  dispatch(setMessages(channel.messages));
   return channel;
 };
 

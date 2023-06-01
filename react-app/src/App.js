@@ -9,11 +9,14 @@ import Navigation from "./components/Navigation";
 import CurrentServer from "./components/CurrentServer";
 import HomePage from "./components/HomePage"
 import LandingPage from "./components/LandingPage";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector((state) => state.session.user)
+  const servers = useSelector((state) => state.serversReducer);
+  const userServers = Object.values(servers?.userServers)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -48,10 +51,11 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/discovery">
-            <DiscoveryServer />
+            <DiscoveryServer user={user}/>
           </Route>
+          <Sidebar userServers={userServers} user={user} />
           <Route path="/channels">
-            <LandingPage />
+            <LandingPage user={user}/>
             {/* <CurrentServer /> */}
             {/* <Members /> */}
           </Route>

@@ -5,7 +5,7 @@ from sqlalchemy.sql import text, func
 def seed_channels():
     channels = [
     {
-        'name': 'Test',
+        'name': 'General Chat',
         'server_id': 1
     },
     {
@@ -17,7 +17,7 @@ def seed_channels():
         'server_id': 1
     },
     {
-        'name': "General",
+        'name': "General Chat",
         'server_id': 2
     },
     {

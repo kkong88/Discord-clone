@@ -11,7 +11,7 @@ import datetime
 
 def find_general_channel_id (channels):
     for channel in channels:
-        if channel.name == 'Test':
+        if channel.name == 'General Chat':
            return channel.id
 
 

@@ -20,8 +20,8 @@ def get_to_servers():
 def get_one_server(server_id):
 
     server = Server.query.get(server_id)
-    return {'server': {server.id: server.to_dict()}}
-
+#     return {'server': {server.id: server.to_dict()}}
+    return server.to_dict()
 #create a server
 @servers_routes.route('', methods = ['POST'])
 def post_to_servers():
@@ -34,7 +34,7 @@ def post_to_servers():
         server_member = ServerMember(server_id=server.id, user_id=server.owner_id)
         db.session.add(server_member)
 
-        channel = Channel(name='Test', server_id=server.id)
+        channel = Channel(name='General Chat', server_id=server.id)
         db.session.add(channel)
         db.session.commit()
 
@@ -79,7 +79,8 @@ def get_all_server_members(server_id):
 def post_server_member(server_id):
         server = Server.query.get(server_id)
 
-        # test_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'Test').first()
+        # test_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'General Chat').first()
+
         test_channel = Channel.query.filter_by(server_id=server_id).first()
         data = request.json
         joining_member = User.query.get(data['userId'])

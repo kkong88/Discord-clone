@@ -6,11 +6,9 @@ import { Dispatch } from "react";
 const Members = () => {
   const dispatch = useDispatch()
   const currentChannel = useSelector((state) => state.channelsReducer?.currentChannel);
-  console.log(currentChannel)
   const currentServerMembers = useSelector(
     (state) => state.serversReducer?.currentServer.members
   );
-  console.log(currentServerMembers);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -18,7 +16,7 @@ const Members = () => {
     if (currentChannel) {
       setLoaded(true);
     }
-  }, [dispatch, currentChannel]);
+  }, [currentChannel]);
 
   if (loaded) {
     return (
