@@ -51,10 +51,11 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/discovery">
+            <Sidebar userServers={userServers}/>
             <DiscoveryServer user={user}/>
           </Route>
-          <Sidebar userServers={userServers} user={user} />
           <Route path="/channels">
+          <Sidebar userServers={userServers}/>
             <LandingPage user={user}/>
             {/* <CurrentServer /> */}
             {/* <Members /> */}

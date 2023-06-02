@@ -27,13 +27,13 @@ const Servers = ({ userServers }) => {
       <div className="server_container">
         {userServers?.map((server) => (
           <NavLink
-            to={`/channels/${server.id}/${server.firstChannelId}`}
-            onClick={() => handleServerClick(server.id, server.firstChannelId)}
+            to={`/channels/${server.id}/${server.generalChannelId}`}
+            onClick={() => handleServerClick(server.id, server.generalChannelId)}
             key={server.id}
           >
             <img
               src={server.picture}
-              alt="server icon"
+              alt={server.name}
             />
           </NavLink>
         ))}

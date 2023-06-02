@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneChannel } from "../../store/channels";
 
-const Sidebar = ({ userServers, user }) => {
+const Sidebar = ({ userServers }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user)
   const userServer = useSelector((state) => state.serversReducer.userServers)
   const handleHomeClick = async (channelId) => {
     await dispatch(getOneChannel(channelId)).then(() => dispatch(userServer));
@@ -16,10 +17,10 @@ const Sidebar = ({ userServers, user }) => {
       <div className="left_side" id="left_nav">
         <NavLink
           className="home_btn"
-          to={`/channels/${Object.values(userServers)[0]?.generalChannelId}`}
-          onClick={() =>
-            handleHomeClick(Object.values(userServers)[0]?.generalChannelId)
-          }
+          to={'/discovery'}
+          // onClick={() =>
+          //   handleHomeClick('/discovery')
+          // }
         >
           <div className="icon_container">
             <img
