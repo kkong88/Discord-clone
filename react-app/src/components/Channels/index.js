@@ -17,7 +17,7 @@ const Channels = () => {
   const currentServer = useSelector((state) => state.serversReducer?.currentServer);
   const channelsObj = useSelector((state) => state.serversReducer?.currentServer.channels);
   const dispatch = useDispatch();
-  console.log(channelsObj)
+
   useEffect(() => {
     let isActive = true;
     isActive && setCurrentChannelId(channelId);

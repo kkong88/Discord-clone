@@ -280,9 +280,8 @@ export const joinUserServer = (serverId, userId) => async (dispatch) => {
 
   // adds new server the user has created to the store
   export const postUserServer = (formData) => async (dispatch) => {
-      const res = await fetch("/api/servers/", {
+      const res = await fetch("/api/servers", {
         method: "POST",
-        headers: {"Content-Type" : "application/json"},
         body: formData,
       });
       const newServer = await res.json();
@@ -290,7 +289,16 @@ export const joinUserServer = (serverId, userId) => async (dispatch) => {
       dispatch(addUserServer(newServer));
       return newServer;
     };
+  // export const postUserServer = (formData) => async (dispatch) => {
+  //   const res = await fetch("/api/servers/", {
+  //     method: "POST",
+  //     body: formData,
+  //   });
+  //   const newServer = await res.json();
 
+  //   dispatch(addUserServer(newServer));
+  //   return newServer;
+  // };
 
 // remove a server the user joined in the store
 export const removeUserServer = (serverId) => {
@@ -347,7 +355,6 @@ export const getAServer = (serverId) => async (dispatch) => {
   export const putCurrentServer = (serverId, formData) => async (dispatch) => {
     const res = await fetch(`/api/servers/${serverId}`, {
       method: "PUT",
-      headers: {"Content-Type" : "application/json"},
       body: formData,
     });
     const updatedServer = await res.json();

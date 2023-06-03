@@ -3,6 +3,7 @@ import Servers from "../Servers";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneChannel } from "../../store/channels";
+import CreateServerModal from "../CreateServer/CreateServerModal";
 
 const Sidebar = ({ userServers }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Sidebar = ({ userServers }) => {
             />
           </div>
         </NavLink>
+        <CreateServerModal></CreateServerModal>
         <span className="home_seperator" />
         <Servers userServers={userServers} />
         {/* <CreateServerModal /> */}

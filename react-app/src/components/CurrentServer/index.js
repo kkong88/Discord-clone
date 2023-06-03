@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import CurrentChannel from "../CurrentChannel";
 import Channels from "../Channels";
 import { getAServer } from "../../store/servers";
+import OpenModalButton from "../OpenModalButton";
+import UpdateServerModal from "../UpdateServer/UpdateServerModal";
 
 const CurrentServer = () => {
     const [loaded, setLoaded] = useState(false);
@@ -18,7 +20,6 @@ const CurrentServer = () => {
     const user = useSelector((state) => state.session.user);
     const membersObj = useSelector((state) => state.serversReducer.currentServer.members)
     const channelsObj = useSelector((state) => state.serversReducer.currentServer.channels)
-    console.log(channelsObj,"SAFASDFASDFASDFASDFDS")
     let history = useHistory();
     const [member, setMember] = useState(false);
 
@@ -37,7 +38,7 @@ const CurrentServer = () => {
           <div>
             <div className="channels_container">
               <Channels channels={channelsObj} className="channels" />
-              
+
           </div>
              <div className="one_channel">
             {channelLoaded && (
@@ -54,6 +55,7 @@ const CurrentServer = () => {
                   />
                 )}
                 </div>
+                    <UpdateServerModal/>
               </div>
         )
       );

@@ -2,6 +2,7 @@ import "./CurrentChannel.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Messages from "../Messages";
+import Chat from "../Chat";
 
 
 const CurrentChannel = () => {
@@ -27,6 +28,7 @@ const CurrentChannel = () => {
     {currentChannel?.messages &&
     <Messages
     messages={messages} />}
+    <Chat classname="input" />
     </>
   );
 };
