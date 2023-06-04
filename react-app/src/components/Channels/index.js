@@ -5,6 +5,8 @@ import { getOneChannel } from "../../store/channels";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import CreateChannelModal from "../CreateChannel/CreateChannelModal";
+import UpdateChannelModal from "../UpdateChannel/UpdateChannelModal";
 
 const Channels = () => {
   const { channelId, dmRoomId } = useParams();
@@ -36,8 +38,8 @@ const Channels = () => {
     <div className="channels">
       <div className="channels_header">
         {user.id === currentServer?.owner?.id &&
-          !channelsObj?.currentChannel?.id
-          // <CreateChannelModal user={user} />
+          !channelsObj?.currentChannel?.id && (
+          <CreateChannelModal />)
         }
       </div>
       {channelsObj && Object.values(channelsObj).map((channel) => (
@@ -58,8 +60,8 @@ const Channels = () => {
               channel.name !== "General Chat" &&
               !channelsObj?.currentChannel?.name && (
                   <div className="channel_right">
+                    <UpdateChannelModal />
                   {/* <img src="/svgs/addMemb.svg" alt="add" /> */}
-                  {/* <EditChannelModal channel={channel} user={user} /> */}
                 </div>
               )}
           </div>

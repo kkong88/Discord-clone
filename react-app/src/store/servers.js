@@ -1,4 +1,4 @@
-// import { setChannels } from "./channels";
+import { setChannels } from "./channels";
 // const SET_SERVERS = 'servers/SetServers'
 // const REMOVE_ALL_SERVERS = 'logout/RemoveServers'
 // const USER_SERVERS = 'server/UserServers'
@@ -339,7 +339,7 @@ export const getAServer = (serverId) => async (dispatch) => {
     const server = await res.json();
 
     dispatch(setCurrentServer(server));
-    //dispatch(setChannels(server.channels));
+    dispatch(setChannels(server.channels));
   };
 
 

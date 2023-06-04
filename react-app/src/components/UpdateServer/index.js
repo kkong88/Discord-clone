@@ -68,7 +68,6 @@ const UpdateServer = () => {
       const formData = new FormData();
       formData.append("name", name);
       await dispatch(putCurrentServer(server.id, formData)).then(() => closeModal());
-
       if (currentChannel.id === server.generalChatId) {
         await dispatch(getOneChannel(server.generalChatId));
       }

@@ -1,4 +1,5 @@
 import { setMessages } from "./messages";
+import { getAServer, updateCurrentServer } from "./servers";
 const CLEAR_CHANNELS_STORE = "logout/CLEAR CHANNELS";
 const SET_USER_DM_CHANNELS = "dms/setsUserDmChannels";
 const SET_SERVER_CHANNELS = "channels/setChannels";
@@ -47,6 +48,7 @@ export const postChannel = (channel) => async (dispatch) => {
   const newChannel = await res.json();
 
   dispatch(addChannel(newChannel.serverId, newChannel));
+  dispatch(getAServer(newChannel.serverId, newChannel))
   dispatch(setCurrentChannel(newChannel));
   return newChannel;
 };
@@ -61,7 +63,8 @@ export const updateChannel = (serverId, channel) => {
 };
 
 export const putChannel = (channel) => async (dispatch) => {
-  const res = await fetch(`/api/servers/${channel.serverId}/channels/${channel.id}`,
+  console.log(channel,"@@@@@@@@@")
+  const res = await fetch(`/api/channels/${channel.id}`,
     {
       method: "PUT",
       headers: {"Content-Type" : "application/json"},
@@ -70,7 +73,6 @@ export const putChannel = (channel) => async (dispatch) => {
   );
 
   const updatedChannel = await res.json();
-
   dispatch(updateChannel(updatedChannel.serverId, updatedChannel));
 };
 
@@ -84,7 +86,7 @@ export const removeChanel = (serverId, channelId) => {
 };
 
 export const deleteChannel = (serverId, channelId) => async (dispatch) => {
-  const res = await fetch(`/api/servers/${serverId}/channels/${channelId}`,
+  const res = await fetch(`/api/channels/${channelId}`,
     {
       method: "DELETE",
     }

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-import { Modal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import CreateServer from ".";
 
