@@ -18,20 +18,20 @@ def get_one_channel(channel_id):
     channel = Channel.query.get(channel_id)
     return channel.to_dict()
 
-# @channel_routes.route('<int:channel_id>', methods = ['POST'])
-# def post_a_channel(channel_id):
+@channel_routes.route('<int:channel_id>', methods = ['POST'])
+def post_a_channel(channel_id):
 
-#         data = request.json
+        data = request.json
 
-#         channel = Channel(name = data['name'], server_id = data['serverId'])
-#         db.session.add(channel)
-#         db.session.commit()
+        channel = Channel(name = data['name'], server_id = data['serverId'])
+        db.session.add(channel)
+        db.session.commit()
 
-#         message = ChannelMessage(channel_id=channel.id, sender_id=1, content=f'Welcome to {channel.server.name}\'s Channel {channel.name}')
-#         db.session.add(message)
-#         db.session.commit()
+        message = ChannelMessage(channel_id=channel.id, sender_id=1, content=f'Welcome to {channel.server.name}\'s Channel {channel.name}')
+        db.session.add(message)
+        db.session.commit()
 
-#         return channel.to_dict()
+        return channel.to_dict()
 
 
 @channel_routes.route('<int:channel_id>', methods = ['PUT'])
