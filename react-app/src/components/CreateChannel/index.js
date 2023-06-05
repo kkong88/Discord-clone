@@ -16,7 +16,6 @@ const CreateChannel = () => {
   const dispatch = useDispatch();
   let history = useHistory();
 
-  //   const user = useSelector((state) => state.session.user);
   const server = useSelector((state) => state.serversReducer.currentServer);
 
   useEffect(() => {
@@ -104,25 +103,18 @@ const CreateChannel = () => {
           ))}
         </div>
       )}
-      <div className="add_chan_btns_container">
         <div className="add_chan_btns">
-          <h5 style={{ cursor: "pointer" }} onClick={() => closeModal()}>
+          <h5 onClick={() => closeModal()}>
             Cancel
           </h5>
 
           <h5
-            className={
-              activeCreate
-                ? "create_channel_btn_active"
-                : "create_channel_btn_unactive"
-            }
             onClick={activeCreate ? handleSubmit : () => validate()}
           >
             Create Channel
           </h5>
         </div>
       </div>
-    </div>
   );
 };
 

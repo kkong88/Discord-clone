@@ -36,32 +36,24 @@ const Channels = () => {
 
   return (
     <div className="channels">
-      <div className="channels_header">
         {user.id === currentServer?.owner?.id &&
           !channelsObj?.currentChannel?.id && (
           <CreateChannelModal />)
         }
-      </div>
       {channelsObj && Object.values(channelsObj).map((channel) => (
           <NavLink
           key={channel.id}
           to={`/channels/${channel.serverId}/${channel.id}`}
           onClick={() => handleChannelChange(channel.id)}
           >
-          <div
-            className="channel"
-            onMouseEnter={() => setHoverId(channel.id)}
-            onMouseLeave={() => setHoverId(null)}
-            >
+          <div className="channel">
           <span className="channel_name_channels">{channel.name}</span>
-
             {((ownerId === user.id && currentChannelId * 1 === channel.id) ||
               (ownerId === user.id && hoverId === channel.id)) &&
               channel.name !== "General Chat" &&
               !channelsObj?.currentChannel?.name && (
                   <div className="channel_right">
                     <UpdateChannelModal />
-                  {/* <img src="/svgs/addMemb.svg" alt="add" /> */}
                 </div>
               )}
           </div>

@@ -145,44 +145,55 @@ const channelsReducer = (
     action
   ) => {
 
-    let newState = { ...state };
     switch (action.type) {
       case SET_USER_DM_CHANNELS: {
+        const newState = {...state}
         newState.userDmChannels = action.dmRooms;
         return newState;
       }
 
       case ADD_CHANNEL_TO_SERVER: {
+        const newState = {...state}
         newState.channels[action.channel.id] = action.channel;
         return newState;
       }
 
       case UPDATE_CHANNEL_ON_SERVER: {
+        const newState = {...state}
         newState.channels[action.channel.id] = action.channel;
         newState.currentChannel = action.channel;
         return newState;
       }
 
       case REMOVE_CHANNEL_FROM_SERVER: {
+        const newState = {...state}
         delete newState.channels[action.channelId];
         return newState;
       }
 
       case SET_SERVER_CHANNELS: {
+        const newState = {...state}
         newState.channels = action.channels;
         return newState;
       }
 
       case SET_CURRENT_CHANNEL: {
+        const newState = {...state}
         newState.currentChannel = action.channel;
         return newState;
       }
 
       case CLEAR_CURRENT_CHANNEL: {
+        const newState = {...state}
         newState.currentChannel = null;
         return newState;
       }
       case ADD_CHANNEL_MESSAGE: {
+        let newState = {...state}
+        newState = global.structuredClone(newState) // using gloabl.structuredClone due to nested state causing mutation of state instead we created a deep copy to reassign it.
+        // let newState = {...state}
+        // newState = {newState : {...state.currentChannel}}
+        // newState = {newState : {...state?.currentChannel?.messages}}
         newState.currentChannel.messages[action.messages.id] = action.messages;
         return newState;
       }

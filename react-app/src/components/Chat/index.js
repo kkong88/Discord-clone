@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const Chat = ({ sendMessage }) => {
   const userId = useSelector((state) => state.session.user.id);
   const [chatContent, setChatContent] = useState("");
-  // const [image, setImage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +20,7 @@ const Chat = ({ sendMessage }) => {
   return (
     <form className="chat_input" onSubmit={handleSubmit}>
       <input
-        className="chat_form_input"
+        className="chat_form"
         placeholder="Send a message!"
         onChange={(e) => setChatContent(e.target.value)}
         value={chatContent}

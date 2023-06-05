@@ -50,20 +50,12 @@ const DiscoveryPage = () => {
     loaded && (
       <div className="all_servers_container">
         <div className="all_servers_header">
-          <img
-            className="all_servers_header_pic"
-            // src="/svgs/all-servers-pic.svg"
-            alt="all servers"
-          />
           <div className="header_text">
-            <h1>Find your community on This-cord</h1>
-            <h4>
-              From gaming, to music, to learning, there's a place for you.
-            </h4>
+            <h1>Find a server to join</h1>
           </div>
         </div>
 
-        <h2 className="featured">Featured Servers</h2>
+        <h2 className="featured">all Servers</h2>
         {servers.length ? (
           <div className="all_servers_map">
             {servers.map(
@@ -91,11 +83,6 @@ const DiscoveryPage = () => {
                     >
                       <div className="join_server_button">
                         <p>Join Server</p>
-                        <img
-                          className="join_server"
-                        //   src="/svgs/joinServer.svg"
-                          alt="join"
-                        />
                       </div>
                     </NavLink>
                   </div>
@@ -104,8 +91,7 @@ const DiscoveryPage = () => {
           </div>
         ) : (
           <h2 className="joined_all_msg">
-            You have joined all of the available servers, please check back
-            later too see if anymore have been added...
+            No current Server
           </h2>
         )}
       </div>

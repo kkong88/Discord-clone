@@ -38,8 +38,6 @@ function App() {
           <Route path="/channels">
           <Sidebar userServers={userServers}/>
             <LandingPage user={user}/>
-            {/* <CurrentServer /> */}
-            {/* <Members /> */}
           </Route>
         </Switch>
       )}

@@ -18,12 +18,9 @@ const Home = () => {
           alt="home-right"
         />
         <div className="main_content">
-          <h1 className="title">IMAGINE A PLACE...</h1>
+          <h1 className="title">Welcome to THIS-Cord</h1>
           <p className="description">
-            ...where you can belong to a school club, a gaming group, or a
-            worldwide art community. Where just you and a handful of friends can
-            spend time together. A place that makes it easy to talk every day
-            and hang out more often.
+            A place to find a community
           </p>
 
           <Link to="/login" className="launch_btn">
@@ -32,9 +29,6 @@ const Home = () => {
         </div>
       </div>
       <div className="home_footer">
-        <div className="produced">
-        </div>
-        <div className="actual_footer">
           <Link
             to="/"
             exact={true}
@@ -43,7 +37,6 @@ const Home = () => {
           />
         </div>
       </div>
-    </div>
   );
 };
 

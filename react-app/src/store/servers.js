@@ -66,17 +66,6 @@ export const joinUserServer = (serverId, userId) => async (dispatch) => {
       dispatch(addUserServer(newServer));
       return newServer;
     };
-  // export const postUserServer = (formData) => async (dispatch) => {
-  //   const res = await fetch("/api/servers/", {
-  //     method: "POST",
-  //     body: formData,
-  //   });
-  //   const newServer = await res.json();
-
-  //   dispatch(addUserServer(newServer));
-  //   return newServer;
-  // };
-
 
 export const removeUserServer = (serverId) => {
       return { type: REMOVE_USER_SERVER, serverId };

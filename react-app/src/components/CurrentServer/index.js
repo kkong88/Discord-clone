@@ -48,11 +48,7 @@ const CurrentServer = () => {
               <div className="members_container">
                 <h1>MEMBERS</h1>
                 {channelLoaded && (
-                  <Members
-                    serversObj={serversObj}
-                    channelsObj={channelsObj}
-                    className="members"
-                  />
+                  <Members />
                 )}
                 </div>
                     <UpdateServerModal/>
