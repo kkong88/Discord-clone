@@ -20,25 +20,6 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
-  // return (
-  //   <>
-  //     <Navigation isLoaded={isLoaded} />
-  //     {isLoaded && (
-  //       <Switch>
-  //         <Route path="/login" >
-  //           <LoginFormPage />
-  //         </Route>
-  //         <Route path="/signup">
-  //           <SignupFormPage />
-  //         </Route>
-  //         <Route path='/discovery'>
-  //           <DiscoveryServer/>
-  //         </Route>
-  //       </Switch>
-  //     )}
-  //   </>
-  // );
   return (
     <>
       <Navigation isLoaded={isLoaded} />

@@ -108,7 +108,6 @@ export const getOneChannel = (channelId) => async (dispatch) => {
 
   const channel = await result.json();
   dispatch(setCurrentChannel(channel));
-  dispatch(setMessages(channel.messages));
   return channel;
 };
 
@@ -118,27 +117,36 @@ export const clearCurrentChannel = () => {
  };
 };
 
+export const ADD_CHANNEL_MESSAGE = "currentChannel/AddMessage";
+export const addChannelMessage = (messages) => {
+  return { type: ADD_CHANNEL_MESSAGE, messages };
+};
+
+export const postMessage = (channelId, formData) => async (dispatch) => {
+    const res = await fetch(`/api/channels/${channelId}/messages`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const newMessage = await res.json();
+
+    dispatch(addChannelMessage(newMessage));
+    return newMessage;
+  };
+
 const channelsReducer = (
     state = {
       channels: [],
-      currentChannel: { members: [] },
+      // currentChannel: { members: [] },
+      currentChannel: null,
       userDmChannels: [],
       dmCurrentChannel: [],
     },
     action
   ) => {
+
     let newState = { ...state };
     switch (action.type) {
-      case CLEAR_CHANNELS_STORE: {
-        newState = {
-          channels: {},
-          currentChannel: { channel: null },
-          userDmChannels: {},
-          dmCurrentChannel: {},
-        };
-        return newState;
-      }
-
       case SET_USER_DM_CHANNELS: {
         newState.userDmChannels = action.dmRooms;
         return newState;
@@ -174,7 +182,10 @@ const channelsReducer = (
         newState.currentChannel = null;
         return newState;
       }
-
+      case ADD_CHANNEL_MESSAGE: {
+        newState.currentChannel.messages[action.messages.id] = action.messages;
+        return newState;
+      }
       default:
         return state;
     }

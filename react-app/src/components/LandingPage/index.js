@@ -17,12 +17,6 @@ const LandingPage = ({ user }) => {
               >
                 <CurrentServer />
               </Route>
-              {/* <ProtectedRoute path="/channels/wampus/404" exact={true}>
-                <Wampus />
-              </ProtectedRoute>
-              <ProtectedRoute path="/channels/*">
-                <Wampus />
-              </ProtectedRoute> */}
             </Switch>
             </>
       );

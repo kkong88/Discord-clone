@@ -3,7 +3,6 @@ import { useState } from "react";
 import React from "react";
 import { useSelector } from "react-redux";
 
-// import "draft-js/dist/Draft.css";
 
 const Chat = ({ sendMessage }) => {
   const userId = useSelector((state) => state.session.user.id);

@@ -20,8 +20,8 @@ def get_to_servers():
 def get_one_server(server_id):
 
     server = Server.query.get(server_id)
-#     return {'server': {server.id: server.to_dict()}}
     return server.to_dict()
+
 #create a server
 @servers_routes.route('', methods = ['POST'])
 def post_to_servers():
@@ -44,7 +44,7 @@ def post_to_servers():
 
         return server.to_dict()
 
-#edit a server
+#update a server
 @servers_routes.route('/<int:server_id>', methods = ['PUT'])
 def update_server(server_id):
 
@@ -74,12 +74,11 @@ def get_all_server_members(server_id):
 
     server_members= ServerMember.query.filter(ServerMember.server_id == server_id).all()
     return {'serverMembers': {member.id:member.to_dict() for member in server_members}}
-
+#find one server member
 @servers_routes.route('<int:server_id>/members', methods = ['POST'])
 def post_server_member(server_id):
-        server = Server.query.get(server_id)
 
-        # test_channel = Channel.query.filter(Channel.server_id == server_id).filter(Channel.name == 'General Chat').first()
+        server = Server.query.get(server_id)
 
         test_channel = Channel.query.filter_by(server_id=server_id).first()
         data = request.json
@@ -106,7 +105,6 @@ def delete_server_member(server_id, member_id):
     db.session.add(leaving_message)
     db.session.commit()
     return {'memberId': member_id, 'serverId': server_general_channel.server_id }
-
 
 
 @servers_routes.route('/<int:server_id>/channels')

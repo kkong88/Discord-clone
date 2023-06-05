@@ -67,6 +67,22 @@ def post_channel_message(channel_id):
     db.session.commit()
     return new_message.to_dict()
 
+# @channel_routes.route('/<int:channel_id>/messages', methods=['POST'])
+# def post_channel_message(channel_id):
+#     data = request.json
+#     content = data.get('content')
+
+#     new_message = ChannelMessage(
+#         channel_id=channel_id,
+#         sender_id=current_user.id,
+#         content=content,
+#         picture='testing.url'
+#     )
+#     db.session.add(new_message)
+#     db.session.commit()
+#     return new_message.to_dict()
+
+
 
 @channel_routes.route('/<int:channel_id>/members')
 def get_channel_members(channel_id):

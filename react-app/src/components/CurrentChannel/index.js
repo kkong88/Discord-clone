@@ -1,34 +1,59 @@
-import "./CurrentChannel.css";
+import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { postMessage, addChannelMessage } from "../../store/channels";
 import Messages from "../Messages";
 import Chat from "../Chat";
 
+const useSocket = (channelId, dispatch) => {
+  const [socket, setSocket] = useState(null);
+  const [socketRoom, setSocketRoom] = useState(null);
+
+  useEffect(() => {
+    const socket = io();
+
+    socket.on("connect_error", (error) => {
+      console.error("Socket connection error:", error);
+    });
+
+    socket.on("message", (data) => {
+      dispatch(addChannelMessage(data["message"]));
+    });
+
+    setSocket(socket);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (channelId && socket) {
+      const socketRoom = `channel${channelId}`;
+      setSocketRoom(socketRoom);
+    }
+  }, [channelId, socket]);
+
+  return { socket, socketRoom };
+};
 
 const CurrentChannel = () => {
   const currentChannel = useSelector((state) => state.channelsReducer?.currentChannel);
   const channelId = currentChannel?.id;
-  const [messages, setMessages] = useState([]);
-
   const dispatch = useDispatch();
+  const { socket, socketRoom } = useSocket(channelId, dispatch);
 
-  useEffect(() => {
-    let isActive = true;
-    const channelMessagesObj = currentChannel?.messages;
+  const sendMessage = async (formData) => {
+    const message = await dispatch(postMessage(channelId, formData));
+    socket?.send({ message, room: socketRoom });
+  };
 
-    if (channelMessagesObj && isActive)
-      setMessages(Object.values(channelMessagesObj));
-
-    return () => (isActive = false);
-  }, [currentChannel]);
-
+  const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
 
   return (
     <>
-    {currentChannel?.messages &&
-    <Messages
-    messages={messages} />}
-    <Chat classname="input" />
+      {messages && <Messages messages={Object.values(messages)} />}
+      <Chat sendMessage={sendMessage} classname="input" />
     </>
   );
 };

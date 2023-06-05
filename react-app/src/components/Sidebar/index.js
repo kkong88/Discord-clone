@@ -17,16 +17,12 @@ const Sidebar = ({ userServers }) => {
     user && (
       <div className="left_side" id="left_nav">
         <NavLink
-          className="home_btn"
+          className="home_button"
           to={'/discovery'}
-          // onClick={() =>
-          //   handleHomeClick('/discovery')
-          // }
         >
           <div className="icon_container">
             <img
               className="left_side_icon"
-              src="/svgs/gray-disc-home.svg"
               alt="home"
             />
           </div>
@@ -39,7 +35,6 @@ const Sidebar = ({ userServers }) => {
           <div className="icon_container">
             <img
               className="left_side_icon"
-              src="/svgs/svgexport-16.svg"
               alt="explore"
             />
           </div>

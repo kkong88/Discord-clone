@@ -73,4 +73,3 @@ class User(db.Model, UserMixin):
             if channel.channel_id == channel_id:
                 return True
         return False
-

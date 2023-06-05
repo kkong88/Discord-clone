@@ -101,7 +101,6 @@ export const deleteServer = (serverId) => async (dispatch) => {
   };
 
 
-
   export const setCurrentServer = (server) => {
     return { type: SET_SELECTED_SERVER, server };
   };
@@ -136,9 +135,6 @@ export const getAServer = (serverId) => async (dispatch) => {
 
     dispatch(updateCurrentServer(updatedServer));
     dispatch(updateUserServers(updatedServer));
-    // dispatch(setChannels(updatedServer.channels));
-
-    // return updatedServer.picture;
   };
 
 export const addMember = (serverId, member) => {
@@ -161,16 +157,6 @@ export const removeMember = (serverId, memberId) => {
   ) => {
     let newState = { ...state };
     switch (action.type) {
-    //   case CLEAR_ALL_SERVERS: {
-    //     newState = {
-    //       userServers: { server: null },
-    //       allServers: { server: null },
-    //       currentServer: {
-    //         server: null,
-    //       },
-    //     };
-    //     return newState;
-    //   }
 
       case CLEAR_SELECTED_SERVER: {
         newState.currentServer = null;

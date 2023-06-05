@@ -16,11 +16,11 @@ const Messages = ({ messages }) => {
       {messages?.map((message) => (
         <div className="message" key={message.id}>
           <div className="message_user">
-            <img
+            {/* <img
               className="message_pfp"
               src={message.senderProfilePicture}
               alt="pfp"
-            />
+            /> */}
           </div>
           <div className="message_content">
             <h4 className="username">{message.senderUsername}</h4>

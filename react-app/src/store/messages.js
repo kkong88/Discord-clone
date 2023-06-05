@@ -10,6 +10,23 @@ export const setMessages = (messages) => {
     }
 }
 
+// const ADD_CHANNEL_MESSAGE = "current/AddMessage";
+// export const addChannelMessage = (message) => {
+//   return { type: ADD_CHANNEL_MESSAGE, message };
+// };
+
+// export const postMessage = (channelId, formData) => async (dispatch) => {
+//     const res = await fetch(`/api/channels/${channelId}/messages`, {
+//       method: "POST",
+//       body: formData,
+//     });
+
+//     const newMessage = await res.json();
+
+//     dispatch(addChannelMessage(newMessage));
+//     return newMessage;
+//   };
+
 export const sendMessage = (message) => {
     return {
         type: SEND_MESSAGE,
@@ -40,7 +57,7 @@ const messageReducer = (state = initialState, action) => {
             newState = action.messages
             return newState
         }
-        // case SEND_MESSAGE: {
+        // case ADD_CHANNEL_MESSAGE: {
         //     newState[action.message.id] = action.message
         //     return newState
         // }
