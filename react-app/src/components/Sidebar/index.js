@@ -22,7 +22,7 @@ const Sidebar = ({ userServers }) => {
         >
           <div className="icon_container">
             <img
-              className="left_side_icon"
+              className="side_icon"
               alt="home"
             />
           </div>
@@ -30,12 +30,11 @@ const Sidebar = ({ userServers }) => {
         <CreateServerModal></CreateServerModal>
         <span className="home_seperator" />
         <Servers userServers={userServers} />
-        {/* <CreateServerModal /> */}
         <NavLink to="/discovery">
           <div className="icon_container">
             <img
-              className="left_side_icon"
-              alt="explore"
+              className="side_icon"
+              alt="discovery"
             />
           </div>
         </NavLink>

@@ -39,17 +39,9 @@ const UpdateServer = () => {
 
     if (name.trim().length < 1) {
       valid -= 1;
-      errors.push("You must include a Server Name.");
+      errors.push("Server name is needed");
       setActiveSave(false);
       setName("");
-    } else {
-      valid += 1;
-    }
-
-    if (name.length > 15) {
-      valid -= 1;
-      errors.push("Your Server Name must be 15 or fewer characters.");
-      setActiveSave(false);
     } else {
       valid += 1;
     }
@@ -73,19 +65,16 @@ const UpdateServer = () => {
       }
     }
   };
-
   const handleDelete = async () => {
     await dispatch(deleteServer(server.id))
       .then(() => history.push(`/discovery`))
       .then(() => closeModal());
   };
-
   const checkChanges = () => {
     if (name !== server.name) {
       setRequireSave(true);
     }
   };
-
   const reset = () => {
     setName(server.name);
     setRequireSave(false);
@@ -100,7 +89,6 @@ const UpdateServer = () => {
           <div
             className="delete"
             onClick={handleDelete}
-            style={{ cursor: "pointer", gap: "10px" }}
           >
             <h3>Delete Server</h3>
           </div>
@@ -134,21 +122,18 @@ const UpdateServer = () => {
             {requireSave && (
               <div className="require_save_container">
                 <div className="require_save_message">
-                  <h4>Careful</h4>
                   <h4>you have unsaved changes!</h4>
                 </div>
-                <div className="save_reset_btns">
+                <div className="save_reset_buttons">
                   <h5
                     className="reset"
                     onClick={reset}
-                    style={{ cursor: "pointer" }}
                   >
                     Reset
                   </h5>
                   <h5
                     className={activeSave ? "save active_save" : "save"}
                     onClick={activeSave ? handleSubmit : validate}
-                    style={activeSave ? { cursor: "pointer" } : { cursor: "default" }}
                   >
                     Save Changes
                   </h5>
@@ -161,7 +146,6 @@ const UpdateServer = () => {
       <div
         onClick={checkChanges}
         className="esc_x_container"
-        style={{ cursor: "pointer" }}
       >
         <h5 className="esc">ESC</h5>
       </div>

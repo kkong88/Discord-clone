@@ -42,10 +42,10 @@ const UpdateChannel = () => {
     for (let i = 0; i < nameArr.length; i++) {
       let ind = nameArr[i];
 
-      if (ind.length > 15) {
+      if (ind.length > 20) {
         valid = -1;
         setActiveEdit(false);
-        errors.push("Each word in your channel name must be 15 or fewer characters.");
+        errors.push("Channel name has to less than 20 words");
         setErrors(errors);
         return false;
       } else {
@@ -125,24 +125,15 @@ const UpdateChannel = () => {
             )}
             {requireSave && (
               <div className="require_save_container">
-                <div className="require_save_message">
-                  <h4>Careful</h4>
-                  <div className="combine_--">
-                    <h4 className="left-">-</h4>
-                    <h4 className="right-">-</h4>
-                  </div>
-                  <h4>you have unsaved changes!</h4>
-                </div>
-                <div className="save_reset_btns">
-                  <h5 className="reset" onClick={reset}>
-                    Reset
-                  </h5>
                   <h5
                     className={activeEdit ? "save active_save" : "save"}
                     onClick={activeEdit ? handleSubmit : () => validate()}
-                    style={activeEdit ? { cursor: "pointer" } : { cursor: "default" }}
                   >
                     Save Changes
+                  </h5>
+                <div className="save_reset_btns">
+                  <h5 className="reset" onClick={reset}>
+                    Reset
                   </h5>
                 </div>
               </div>
