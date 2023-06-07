@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postMessage, addChannelMessage, getOneChannel } from "../../store/channels";
 import Messages from "../Messages";
 import Chat from "../Chat";
-let socket
+
 const useSocket = (channelId, dispatch) => {
   const [socket, setSocket] = useState(null);
   const [socketRoom, setSocketRoom] = useState(null);
@@ -34,6 +34,9 @@ const useSocket = (channelId, dispatch) => {
       const socketRoom = `channel${channelId}`;
       socket.emit("join_room", {"room" :socketRoom})
       setSocketRoom(socketRoom);
+      return (() => {
+        socket.emit('leave_room', {'room': socketRoom})
+      })
     }
   }, [channelId, socket]);
 
