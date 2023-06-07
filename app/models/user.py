@@ -11,24 +11,24 @@ from sqlalchemy import Column, Integer, String, Enum, ForeignKey, DateTime
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    id = db.Column(Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(String(2000))
-    created_at = db.Column(DateTime(), server_default=func.now())
-    updated_at = db.Column(DateTime(), onupdate=func.now())
+    created_at = db.Column(db.DateTime(), server_default=func.now())
+    updated_at = db.Column(db.DateTime(), onupdate=func.now())
 
 
-    servers_owned = relationship('Server', backref='owner',cascade="all, delete")
+    servers_owned = db.relationship('Server', backref='owner',cascade="all, delete")
 
-    server_member = relationship('ServerMember', backref='member')
+    server_member = db.relationship('ServerMember', backref='member')
 
-    channel_member = relationship('ChannelMember', backref='member')
+    channel_member = db.relationship('ChannelMember', backref='member')
 
-    channel_messages_sent = relationship('ChannelMessage', backref='sender',cascade="all, delete")
+    channel_messages_sent = db.relationship('ChannelMessage', backref='sender',cascade="all, delete")
 
-    channels_owned = relationship('Channel', backref='owner', cascade='all, delete')
+    channels_owned = db.relationship('Channel', backref='owner', cascade='all, delete')
 
 
     @property

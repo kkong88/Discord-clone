@@ -7,13 +7,13 @@ from sqlalchemy import Column, Integer, String, Enum, ForeignKey, DateTime
 class ChannelMessage(db.Model):
     __tablename__ = 'channelMessages'
 
-    id = db.Column(Integer, primary_key=True)
-    channel_id = db.Column(Integer, ForeignKey('channels.id'))
-    sender_id = db.Column(Integer, ForeignKey('users.id'), nullable=False)
-    content = db.Column(String(2000), nullable=False)
-    picture = db.Column(String(2000))
-    created_at = db.Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
+    id = db.Column(db.Integer, primary_key=True)
+    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'))
+    sender_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    content = db.Column(db.String(2000), nullable=False)
+    picture = db.Column(db.String(2000))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     def to_dict(self):
         return {
@@ -37,4 +37,3 @@ class ChannelMessage(db.Model):
             'senderProfilePicture':self.sender.profile_picture,
             'content': self.content,
         }
-

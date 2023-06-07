@@ -18,18 +18,18 @@ def find_general_channel_id (channels):
 class Server(db.Model):
     __tablename__ = 'servers'
 
-    id = db.Column(Integer, primary_key=True)
-    owner_id = db.Column(Integer, ForeignKey('users.id'), nullable=False,)
-    server_picture = db.Column(String(2000))
-    name = db.Column(String(100),nullable=False)
-    description = db.Column(String(255))
-    created_at = db.Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
+    id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False,)
+    server_picture = db.Column(db.String(2000))
+    name = db.Column(db.String(100),nullable=False)
+    description = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
 
-    channels = relationship('Channel', backref='server', cascade="all,delete-orphan")
+    channels = db.relationship('Channel', backref='server', cascade="all,delete-orphan")
 
-    members = relationship('ServerMember', cascade='all, delete-orphan', backref='server')
+    members = db.relationship('ServerMember', cascade='all, delete-orphan', backref='server')
 
     def to_dict(self):
         return {
