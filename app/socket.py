@@ -32,6 +32,7 @@ def on_inactive_user(data):
 def on_join(data):
     room = data['room']
     join_room(room)
+    print('THIS IS ROOM!')
     emit('open_room', {'room': room}, broadcast=True)
 
 @socketio.on("leave_room")
@@ -40,4 +41,5 @@ def leave(data):
 
 @socketio.on('message')
 def on_chat_sent(data):
-    emit('chat_message', {'message': data['message']['message']}, room=data['room'])
+    print(data,"____LOOOOOK ATT MEEEEEE________")
+    emit('message', {'message': data['message']}, room=data['room'])
