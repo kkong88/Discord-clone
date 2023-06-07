@@ -91,7 +91,7 @@ const UpdateChannel = () => {
     <div className="edit_channel_modal">
       <div className="container_for_options">
         <div className="edit_options">
-          {name ? <h5>{name.toUpperCase()}</h5> : <h5>Channel Settings</h5>}
+          {name ? <h5>{name}</h5> : <h5>Channel Settings</h5>}
           <h4 onClick={() => setSelected("Overview")}>Overview</h4>
           <div className="delete" onClick={handleDelete}>
             <h3>Delete Channel</h3>

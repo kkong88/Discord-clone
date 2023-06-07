@@ -22,6 +22,10 @@ const useSocket = (channelId, dispatch) => {
 
     setSocket(socket);
 
+    socket.on("chat_message", (data) => {
+      dispatch(addChannelMessage(data["chat_message"]));
+    });
+
     return () => {
       socket.disconnect();
     };
@@ -34,6 +38,14 @@ const useSocket = (channelId, dispatch) => {
     }
   }, [channelId, socket]);
 
+  useEffect(() => {
+    if (socket) {
+      socket.on("receive_message", (data) => {
+        dispatch(addChannelMessage(data["message"]));
+      });
+    }
+  }, [socket, dispatch]);
+
   return { socket, socketRoom };
 };
 
@@ -45,7 +57,8 @@ const CurrentChannel = () => {
 
   const sendMessage = async (formData) => {
     const message = await dispatch(postMessage(channelId, formData));
-    socket?.send({ message, room: socketRoom });
+    // socket?.send({ message, room: socketRoom });
+    socket?.emit('new_message', { message, room: socketRoom });
   };
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);

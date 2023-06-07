@@ -40,4 +40,5 @@ def leave(data):
 
 @socketio.on('message')
 def on_chat_sent(data):
+    print(data, "SOCKET MESSAGE")
     emit('chat_message', {'message': data['message']}, room=data['room'])

@@ -20,7 +20,7 @@ const Sidebar = ({ userServers }) => {
           className="home_button"
           to={'/discovery'}
         >
-          <div className="icon_container">
+          <div className="icon">
             <img
               className="side_icon"
               alt="home"
