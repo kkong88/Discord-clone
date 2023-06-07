@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import { postMessage, addChannelMessage } from "../../store/channels";
+import { postMessage, addChannelMessage, getOneChannel } from "../../store/channels";
 import Messages from "../Messages";
 import Chat from "../Chat";
-
+let socket
 const useSocket = (channelId, dispatch) => {
   const [socket, setSocket] = useState(null);
   const [socketRoom, setSocketRoom] = useState(null);
@@ -23,9 +23,6 @@ const useSocket = (channelId, dispatch) => {
 
     setSocket(socket);
 
-    socket.on("chat_message", (data) => {
-      dispatch(addChannelMessage(data["message"]));
-    });
 
     return () => {
       socket.disconnect();
@@ -35,6 +32,7 @@ const useSocket = (channelId, dispatch) => {
   useEffect(() => {
     if (channelId && socket) {
       const socketRoom = `channel${channelId}`;
+      socket.emit("join_room", {"room" :socketRoom})
       setSocketRoom(socketRoom);
     }
   }, [channelId, socket]);
@@ -52,7 +50,7 @@ const CurrentChannel = () => {
   const sendMessage = async (formData) => {
     const message = await dispatch(postMessage(channelId, formData));
     console.log(message,"MESSAGE ON LINE 53!!!!!")
-    socket?.emit("message", { message, room: socketRoom });
+    socket?.emit("message", { message, room : socketRoom });
   };
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
