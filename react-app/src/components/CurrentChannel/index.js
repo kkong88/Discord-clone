@@ -17,10 +17,15 @@ const useSocket = (channelId, dispatch) => {
     });
 
     socket.on("message", (data) => {
+      console.log(data,"LINE 20 IN index")
       dispatch(addChannelMessage(data["message"]));
     });
 
     setSocket(socket);
+
+    socket.on("chat_message", (data) => {
+      dispatch(addChannelMessage(data["message"]));
+    });
 
     return () => {
       socket.disconnect();
@@ -37,6 +42,7 @@ const useSocket = (channelId, dispatch) => {
   return { socket, socketRoom };
 };
 
+
 const CurrentChannel = () => {
   const currentChannel = useSelector((state) => state.channelsReducer?.currentChannel);
   const channelId = currentChannel?.id;
@@ -45,7 +51,8 @@ const CurrentChannel = () => {
 
   const sendMessage = async (formData) => {
     const message = await dispatch(postMessage(channelId, formData));
-    socket?.send({ message, room: socketRoom });
+    console.log(message,"MESSAGE ON LINE 53!!!!!")
+    socket?.emit("message", { message, room: socketRoom });
   };
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
