@@ -9,7 +9,7 @@ from .user import User
 
 
 class ServerMember(db.Model):
-    __tablename__ = 'serverMembers'
+    __tablename__ = 'server_members'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}

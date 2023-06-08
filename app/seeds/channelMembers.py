@@ -27,8 +27,8 @@ def seed_channel_members():
 
 def undo_channel_members():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.channelMembers RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.channel_members RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM channelMembers"))
+        db.session.execute(text("DELETE FROM channel_members"))
 
     db.session.commit()

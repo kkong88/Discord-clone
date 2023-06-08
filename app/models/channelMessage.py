@@ -5,7 +5,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, Enum, ForeignKey, DateTime
 
 class ChannelMessage(db.Model):
-    __tablename__ = 'channelMessages'
+    __tablename__ = 'channel_messages'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}

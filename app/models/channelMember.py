@@ -6,7 +6,7 @@ from sqlalchemy import Column, Integer, String, Enum, ForeignKey, DateTime
 
 
 class ChannelMember(db.Model):
-    __tablename__ = 'channelMembers'
+    __tablename__ = 'channel_members'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
