@@ -1,8 +1,8 @@
-"""updated models
+"""updated version
 
-Revision ID: f2dd0ac3d765
+Revision ID: 01b5cb75efef
 Revises:
-Create Date: 2023-06-07 19:51:01.526748
+Create Date: 2023-06-07 20:44:48.084480
 
 """
 from alembic import op
