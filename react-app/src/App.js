@@ -39,6 +39,9 @@ function App() {
           <Sidebar userServers={userServers}/>
             <LandingPage user={user}/>
           </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
         </Switch>
       )}
     </>

@@ -10,7 +10,7 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return user && <button className="log_buttonn" onClick={onLogout}>Logout</button>;
+  return user && <button className="log_button" onClick={onLogout}>Logout</button>;
 };
 
 export default LogoutButton;
