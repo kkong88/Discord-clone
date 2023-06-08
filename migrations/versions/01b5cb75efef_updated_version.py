@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'f2dd0ac3d765'
+revision = '01b5cb75efef'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,6 +33,7 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
@@ -67,7 +68,7 @@ def upgrade():
 
     op.create_table('serverMembers',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('server_id', sa.Integer(), nullable=False),
+    sa.Column('server_id', sa.Integer(), nullable=False, passive_deletes=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
@@ -80,7 +81,7 @@ def upgrade():
 
     op.create_table('channelMembers',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('channel_id', sa.Integer(), nullable=False),
+    sa.Column('channel_id', sa.Integer(), nullable=False, passive_deletes=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
@@ -103,7 +104,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['sender_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE channelMessages SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
@@ -118,3 +118,4 @@ def downgrade():
     op.drop_table('servers')
     op.drop_table('users')
     # ### end Alembic commands ###
+
