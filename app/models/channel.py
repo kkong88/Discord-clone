@@ -7,10 +7,13 @@ from sqlalchemy import Column, Integer, String, Enum, ForeignKey, DateTime, Bool
 class Channel(db.Model):
     __tablename__ = 'channels'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    server_id = db.Column(db.Integer, db.ForeignKey('servers.id'))
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     dm_channel = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
