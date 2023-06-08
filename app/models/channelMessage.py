@@ -12,7 +12,7 @@ class ChannelMessage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')))
-    sender_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), nullable=False))
+    sender_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     content = db.Column(db.String(2000), nullable=False)
     picture = db.Column(db.String(2000))
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
