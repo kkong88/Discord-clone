@@ -9,6 +9,7 @@ const CreateServerModal = () => {
     <>
         <OpenModalButton
         buttonText='Create a Server'
+        img scr="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686344690/50996310-positive-symbol-zoom-in-plus-sign-icon-isolated-on-white-background_cpbqme.jpg"
         modalComponent={<CreateServer />}
         />
     </>

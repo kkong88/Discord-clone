@@ -13,6 +13,7 @@ const Messages = ({ messages }) => {
 //   }, [messages]);
   return (
     <div className="messages">
+      <h1>Messages</h1>
       {messages?.map((message) => (
         <div className="message" key={message.id}>
           <div className="message_user">
@@ -28,7 +29,6 @@ const Messages = ({ messages }) => {
           </div>
         </div>
       ))}
-      <h1>Messages</h1>
     </div>
   );
 };

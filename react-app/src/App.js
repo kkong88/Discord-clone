@@ -7,6 +7,7 @@ import DiscoveryServer from "./components/DiscoveryServer";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import CurrentServer from "./components/CurrentServer";
+import ParentContainer from "./components/Container";
 import HomePage from "./components/HomePage"
 import LandingPage from "./components/LandingPage";
 import Sidebar from "./components/Sidebar";
@@ -37,7 +38,7 @@ function App() {
           </Route>
           <Route path="/channels">
           <Sidebar userServers={userServers}/>
-            <LandingPage user={user}/>
+            <ParentContainer user={user}/>
           </Route>
           <Route path="/">
             <HomePage />

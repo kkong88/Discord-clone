@@ -3,7 +3,9 @@ import Servers from "../Servers";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneChannel } from "../../store/channels";
+import LogoutButton from "../auth/LogoutButton";
 import CreateServerModal from "../CreateServer/CreateServerModal";
+import UpdateServerModal from "../UpdateServer/UpdateServerModal";
 
 const Sidebar = ({ userServers }) => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ const Sidebar = ({ userServers }) => {
       <div className="left_side" id="left_nav">
         <NavLink
           className="home_button"
-          to={'/discovery'}
+          to={'/'}
         >
           <div className="icon_container">
             <img
@@ -28,9 +30,10 @@ const Sidebar = ({ userServers }) => {
             />
           </div>
         </NavLink>
-        <CreateServerModal></CreateServerModal>
+          <CreateServerModal/>
         <span className="home_seperator" />
         <Servers userServers={userServers} />
+          <UpdateServerModal/>
         {/* <CreateServerModal /> */}
         <NavLink to="/discovery">
           <div className="icon_container">
@@ -38,9 +41,10 @@ const Sidebar = ({ userServers }) => {
               src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686267131/6473-greencompass_zg6ulj.png"
               className="left_side_icon"
               alt="explore"
-            />
+              />
           </div>
         </NavLink>
+        {/* <LogoutButton/> */}
       </div>
     )
   );
