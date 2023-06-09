@@ -1,0 +1,67 @@
+.create_channel_modal {
+    background-color: #2f3136;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 24vw;
+    height: fit-content;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.inputs_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.chan_name_label {
+    color: #4594f4;
+    font-weight: 600;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.chan_name_input {
+    background-color: #cdd2db;
+    border: none;
+    border-radius: 3px;
+    color: #4594f4;
+    padding: 10px;
+    width: 75%;
+    margin-bottom: 10px;
+}
+
+.add_channal_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cancel_button, .create_channel_button, .create_channel_button_active {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.cancel_button {
+    background-color: #747f8d;
+}
+
+.cancel_button:hover {
+    background-color: #586e7c;
+}
+
+.create_channel_button, .create_channel_button_active {
+    background-color: #5865f2;
+}
+
+.create_channel_button:hover, .create_channel_button_active:hover {
+    background-color: #475bc4;
+}

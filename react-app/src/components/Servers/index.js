@@ -32,7 +32,8 @@ const Servers = ({ userServers }) => {
             key={server.id}
           >
             <img
-              src={server.picture}
+            // src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255870/png-clipart-computer-icons-discord-logo-smiley-emoticon-smiley-miscellaneous-blue_zdbu60.png"
+              // src={server.picture}
               alt={server.name}
             />
           </NavLink>

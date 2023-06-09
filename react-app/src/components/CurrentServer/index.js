@@ -35,24 +35,22 @@ const CurrentServer = () => {
 
       return (
         loaded && (
-          <div>
+          <div className="server_container">
             <div className="channels_container">
               <Channels channels={channelsObj} className="channels" />
-
+            </div>
+            <div className="one_channel">
+              {channelLoaded && (
+                <CurrentChannel channelsObj={channelsObj} className="one_channel" />
+              )}
+            </div>
+            <div className="members_container">
+              {channelLoaded && (
+                <Members />
+              )}
+            </div>
+            <UpdateServerModal/>
           </div>
-             <div className="one_channel">
-            {channelLoaded && (
-              <CurrentChannel channelsObj={channelsObj} className="one_channel" />
-            )}
-          </div>
-              <div className="members_container">
-                <h1>MEMBERS</h1>
-                {channelLoaded && (
-                  <Members />
-                )}
-                </div>
-                    <UpdateServerModal/>
-              </div>
         )
       );
     };

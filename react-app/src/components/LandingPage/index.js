@@ -1,12 +1,9 @@
 import CurrentServer from "../CurrentServer";
 import { useContext, useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
+import Chat from "../Chat";
 
 const LandingPage = ({ user }) => {
-    // const { dmRoomsView, setDmRoomsView } = useContext(DmRoomViewContext);
-    // const [loaded, setLoaded] = useState(true);
-    // let url = useLocation();
-
     return (
           <>
           <h1>LandingPage</h1>

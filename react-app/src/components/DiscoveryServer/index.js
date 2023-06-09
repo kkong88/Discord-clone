@@ -6,13 +6,10 @@ import { NavLink } from "react-router-dom";
 import { joinUserServer } from "../../store/servers";
 import { getAServer } from "../../store/servers";
 import { getOneChannel } from "../../store/channels";
-// import { useContext } from "react";
-// import { DmRoomViewContext } from "../../context/DmRoomViewContext";
 import { useHistory } from "react-router-dom";
 
 const DiscoveryPage = () => {
   const dispatch = useDispatch();
-//   const { setDmRoomsView } = useContext(DmRoomViewContext);
   const [loaded, setLoaded] = useState(false);
   const [servers, setServers] = useState("");
   const user = useSelector((state) => state.session.user);
@@ -42,7 +39,6 @@ const DiscoveryPage = () => {
     await dispatch(joinUserServer(serverId, user.id))
       .then(() => dispatch(getAServer(serverId)))
       .then(() => dispatch(getOneChannel(channelId)))
-    //   .then(() => setDmRoomsView(false))
       .then(() => history.push(`/channels/${serverId}/${channelId}`));
   };
 
@@ -55,23 +51,22 @@ const DiscoveryPage = () => {
           </div>
         </div>
 
-        <h2 className="featured">all Servers</h2>
+        <h2 className="featured"></h2>
         {servers.length ? (
           <div className="all_servers_map">
             {servers.map(
               (server) => (
-                  <div key={server.id} className="singular_server">
+                  <div key={server.id} className="single_server">
                     <h3>{server.name}</h3>
                     <img
                       className="server_pics"
-                      src={server.picture}
-                      alt="serverpic"
+                      src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255870/png-clipart-computer-icons-discord-logo-smiley-emoticon-smiley-miscellaneous-blue_zdbu60.png"
                     />
                     <div className="server_about">
                       <h6 className="server_description">
                         {server.description}
                       </h6>
-                      <h6 className="members_length">
+                      <h6 className="members_length"> 
                         {server.membersLength} members
                       </h6>
                     </div>
@@ -91,7 +86,7 @@ const DiscoveryPage = () => {
           </div>
         ) : (
           <h2 className="joined_all_msg">
-            No current Server
+            No current Server to join
           </h2>
         )}
       </div>

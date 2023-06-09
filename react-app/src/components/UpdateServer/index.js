@@ -96,21 +96,13 @@ const UpdateServer = () => {
       <div className="container_for_options">
         <div className="edit_options">
           <h5>{name ? name.toUpperCase() : "Server Settings"}</h5>
-          <h4 onClick={() => setSelected("Overview")}>Overview</h4>
-          <div
-            className="delete"
-            onClick={handleDelete}
-            style={{ cursor: "pointer", gap: "10px" }}
-          >
-            <h3>Delete Server</h3>
-          </div>
+          <h4 onClick={() => setSelected("Overview")}></h4>
         </div>
       </div>
       <div className="info">
         {selected === "Overview" && (
           <div className="overview_container">
             <h3 className="overview_title" id="9">
-              Server Overview
             </h3>
             <div className="overview">
               <div className="edit_server_name">
@@ -134,37 +126,38 @@ const UpdateServer = () => {
             {requireSave && (
               <div className="require_save_container">
                 <div className="require_save_message">
-                  <h4>Careful</h4>
-                  <h4>you have unsaved changes!</h4>
+                  <h5>DONT FORGET TO SAVE</h5>
                 </div>
                 <div className="save_reset_btns">
-                  <h5
+                  <button
                     className="reset"
                     onClick={reset}
                     style={{ cursor: "pointer" }}
                   >
                     Reset
-                  </h5>
-                  <h5
+                  </button>
+                  <button
                     className={activeSave ? "save active_save" : "save"}
                     onClick={activeSave ? handleSubmit : validate}
                     style={activeSave ? { cursor: "pointer" } : { cursor: "default" }}
                   >
                     Save Changes
-                  </h5>
+                  </button>
                 </div>
               </div>
             )}
           </div>
         )}
+         <button
+            className="delete"
+            onClick={handleDelete}
+          > Delete
+          </button>
       </div>
-      <div
-        onClick={checkChanges}
-        className="esc_x_container"
-        style={{ cursor: "pointer" }}
-      >
-        <h5 className="esc">ESC</h5>
-      </div>
+      <div className="add_channal_buttons">
+      <button className="cancel_button" onClick={() => closeModal()}>Cancel
+            </button>
+        </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@
     padding: 20px 50px;
     position: relative;
     z-index: 4;
-    background-color: #5865f2;
+    background-color: #3544e7;
   }
 
   .navbar-brand img {
@@ -31,6 +31,6 @@
   }
 
   .navbar-link:hover {
-    background-color:  #5865f2;
+    background-color:  #2b3174;
     color: #f8f9fa;
   }

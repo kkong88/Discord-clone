@@ -14,20 +14,21 @@ const Members = () => {
       setLoaded(true);
     }
   }, [dispatch, currentChannel]);
+    if (loaded && currentServerMembers) {
+      return (
+        <div className="members_list">
+          <h2 className="members_title">Members</h2>
+          {Object.values(currentServerMembers).map((member) => (
+            <div className="member" key={member.id * 2}>
+              <h4>{member.username}</h4>
+            </div>
+          ))}
+        </div>
+      );
+    }
 
-  if (loaded && currentServerMembers) {
-    return (
-      <div className="members_list">
-        {Object.values(currentServerMembers).map((member) => (
-          <div className="member" key={member.id * 2}>
-            <h4>{member.username}</h4>
-          </div>
-        ))}
-      </div>
-    );
-  }
+    return <h1>Loading...</h1>;
+  };
 
-  return <h1>Loading...</h1>;
-};
 
 export default Members;

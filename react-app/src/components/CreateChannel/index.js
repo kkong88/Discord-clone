@@ -94,26 +94,18 @@ const CreateChannel = () => {
           placeholder="new-channel"
           value={name}
         />
-        <img className="white_pound" src="/svgs/white-pound.svg" alt="#" />
       </div>
       {errors.length > 0 && (
-        <div className="errors_create_chan">
+        <div className="errors_create_chann">
           {errors.map((error, ind) => (
             <div key={ind || error}>{error}</div>
           ))}
         </div>
       )}
-        <div className="add_chan_btns">
-          <h5 onClick={() => closeModal()}>
-            Cancel
-          </h5>
-
-          <h5
-            onClick={activeCreate ? handleSubmit : () => validate()}
-          >
-            Create Channel
-          </h5>
-        </div>
+      <div className="add_channal_buttons">
+    <h5 className="cancel_button" onClick={() => closeModal()}>Cancel</h5>
+    <h5 className={activeCreate ? "create_channel_button_active" : "create_channel_button"} onClick={activeCreate ? handleSubmit : () => validate()}>Create Channel</h5>
+</div>
       </div>
   );
 };

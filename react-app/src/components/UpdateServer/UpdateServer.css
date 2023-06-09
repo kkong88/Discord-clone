@@ -1,0 +1,154 @@
+.edit_server_modal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 500px;
+    background-color: rgb(93, 92, 92);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.19);
+}
+
+.container_for_options,
+.info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit_options h4,
+.edit_options h5,
+.overview_title {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.edit_options h4:hover,
+.edit_options h5:hover {
+    cursor: pointer;
+    color: #747f8d;
+}
+
+.delete {
+    color: #ffffff;
+    background-color: #747f8d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: fit-content;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.delete:hover {
+    background-color: #586e7c;
+}
+
+
+.overview_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit_server_name {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.edit_server_name input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #40444b;
+    color: #ffffff;
+}
+
+.require_save_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.save_reset_btns {
+    display: flex;
+    gap: 10px;
+}
+
+.reset,
+.save {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset {
+    background-color: #747f8d;
+}
+
+.reset:hover {
+    background-color: #586e7c;
+}
+
+.save {
+    background-color: #7289da;
+}
+
+.save:hover {
+    background-color: #475bc4;
+}
+
+.add_channal_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cancel_button {
+    color: #ffffff;
+    background-color: #747f8d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cancel_button:hover {
+    background-color: #586e7c;
+}
+
+.reset, .save, .cancel_button, .delete {
+    background-color: #747f8d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: none;
+    text-align: center;
+    display: block;
+    width: fit-content;
+}
+
+.reset:hover, .save:hover, .cancel_button:hover, .delete:hover {
+    background-color: #586e7c;
+}
+
+.active_save {
+    background-color: #586e7c;
+}

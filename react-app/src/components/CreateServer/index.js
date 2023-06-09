@@ -94,11 +94,11 @@ const CreateServer = () => {
           <p>Your server is where you and your friends hang out. Make yours and start talking.</p>
           <button className="create_my_own" onClick={handleFirstClick}>
             <div className="create_left">
-              {/* <img src="/svgs/create.svg" alt="create" /> */}
               <p>Create My Own</p>
             </div>
-            {/* <img className="right_carrot" src="/svgs/right-carrot.svg" alt="create" /> */}
           </button>
+          <button className="cancel_button" onClick={() => closeModal()}>Cancel
+            </button>
         </div>
       )}
 
@@ -109,17 +109,13 @@ const CreateServer = () => {
           <div>
             <button className="create_my_own" onClick={() => handleTransition(1)}>
               <div className="create_left">
-                {/* <img src="/svgs/community.svg" alt="create" /> */}
                 <p>For a club or community</p>
               </div>
-              {/* <img className="right_carrot" src="/svgs/right-carrot.svg" alt="create" /> */}
             </button>
             <button className="create_my_own" onClick={() => handleTransition(1)}>
               <div className="create_left">
-                {/* <img src="/svgs/club.svg" alt="create" /> */}
                 <p>For me and my friends</p>
               </div>
-              {/* <img className="right_carrot" src="/svgs/right-carrot.svg" alt="create" /> */}
             </button>
           </div>
           <div className="back" onClick={() => handleTransition(-1)}>
@@ -149,12 +145,12 @@ const CreateServer = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="create_btns_container">
+          <div className="create_buttons_container">
             <button onClick={() => handleTransition(-2)} className="back_text">
               Back
             </button>
             <button
-              className={activeCreate ? "create_btn active_btn" : "create_btn"}
+              className={activeCreate ? "create_button active_button" : "create_button"}
               onClick={activeCreate ? handleSubmit : () => validate()}
             >
               Create

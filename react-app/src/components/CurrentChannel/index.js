@@ -58,12 +58,25 @@ const CurrentChannel = () => {
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
 
+  // return (
+  //   <>
+  //     {messages && <Messages messages={Object.values(messages)} />}
+  //     <Chat sendMessage={sendMessage} classname="input" />
+  //   </>
+  // );
   return (
-    <>
-      {messages && <Messages messages={Object.values(messages)} />}
-      <Chat sendMessage={sendMessage} classname="input" />
-    </>
+    <div className="current-channel">
+      {messages && (
+        <div className="messages-container">
+          <Messages messages={Object.values(messages)} />
+        </div>
+      )}
+      <div className="chat-input-container">
+        <Chat sendMessage={sendMessage} classname="input" />
+      </div>
+    </div>
   );
+
 };
 
 export default CurrentChannel;

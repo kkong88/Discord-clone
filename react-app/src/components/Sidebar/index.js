@@ -22,6 +22,7 @@ const Sidebar = ({ userServers }) => {
         >
           <div className="icon_container">
             <img
+              src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255057/discord-icon-all-the-cool-kids-are-moving-discord-podfeet-podcasts-0_puo5ol.png"
               className="left_side_icon"
               alt="home"
             />
@@ -34,6 +35,7 @@ const Sidebar = ({ userServers }) => {
         <NavLink to="/discovery">
           <div className="icon_container">
             <img
+              src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686267131/6473-greencompass_zg6ulj.png"
               className="left_side_icon"
               alt="explore"
             />

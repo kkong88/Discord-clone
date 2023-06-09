@@ -6,13 +6,13 @@ from sqlalchemy.sql.expression import func
 def seed_servers():
     server1 = Server(
         name = 'The Boys',
-        server_picture = 'Example.jpg',
+        server_picture = 'https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255057/discord-icon-all-the-cool-kids-are-moving-discord-podfeet-podcasts-0_puo5ol.png',
         description = 'Hello Welcome',
         owner_id = 1
     )
     server2 = Server(
         name = 'App Academy',
-        server_picture = 'TEST.jpg',
+        server_picture = 'https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255057/discord-icon-all-the-cool-kids-are-moving-discord-podfeet-podcasts-0_puo5ol.png',
         description = 'Have Fun',
         owner_id = 2
     )
