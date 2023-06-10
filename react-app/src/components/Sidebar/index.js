@@ -3,14 +3,19 @@ import Servers from "../Servers";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneChannel } from "../../store/channels";
-import LogoutButton from "../auth/LogoutButton";
 import CreateServerModal from "../CreateServer/CreateServerModal";
 import UpdateServerModal from "../UpdateServer/UpdateServerModal";
+import { useParams } from 'react-router-dom';
 
 const Sidebar = ({ userServers }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
   const userServer = useSelector((state) => state.serversReducer.userServers)
+  const CurrentServer = useSelector((state) =>  state.serversReducer.currentServer)
+  const serverid = CurrentServer.id
+
+
+
   const handleHomeClick = async (channelId) => {
     await dispatch(getOneChannel(channelId)).then(() => dispatch(userServer));
   };
@@ -30,21 +35,19 @@ const Sidebar = ({ userServers }) => {
             />
           </div>
         </NavLink>
-          <CreateServerModal/>
+        <CreateServerModal></CreateServerModal>
         <span className="home_seperator" />
         <Servers userServers={userServers} />
-          <UpdateServerModal/>
-        {/* <CreateServerModal /> */}
+        {serverid && <UpdateServerModal />}
         <NavLink to="/discovery">
           <div className="icon_container">
             <img
               src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686267131/6473-greencompass_zg6ulj.png"
               className="left_side_icon"
               alt="explore"
-              />
+            />
           </div>
         </NavLink>
-        {/* <LogoutButton/> */}
       </div>
     )
   );

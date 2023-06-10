@@ -42,14 +42,14 @@ const CurrentServer = () => {
             <div className="one_channel">
               {channelLoaded && (
                 <CurrentChannel channelsObj={channelsObj} className="one_channel" />
-              )}
+                )}
             </div>
             <div className="members_container">
               {channelLoaded && (
                 <Members />
-              )}
+                )}
             </div>
-            <UpdateServerModal/>
+                <UpdateServerModal/>
           </div>
         )
       );

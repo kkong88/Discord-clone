@@ -7,6 +7,7 @@
   width: 72px;
   height: 100vh;
   background-color: #3068d8;
+  border-right: 1px solid black ;
   gap: 10px;
 }
 

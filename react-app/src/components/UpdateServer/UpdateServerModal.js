@@ -4,6 +4,8 @@ import OpenModalButton from "../OpenModalButton";
 import UpdateServer from ".";
 
 const UpdateServerModal = ({ serversObj, user, showModal, setShowModal }) => {
+
+
   return (
     <>
         <OpenModalButton

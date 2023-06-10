@@ -1,3 +1,4 @@
+import Channels from "../Channels";
 import "./Messages.css";
 
 import { useRef, useEffect } from "react";

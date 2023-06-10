@@ -43,16 +43,16 @@
     width: 120px;
     background-color: #3068d8;
     overflow-y: auto;
-    margin-left: 72px;
+    margin-left: 73px;
 }
 
 .current-channel {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    padding: 18px;
+    border-left: 1px solid black;
+    border-right: 2px solid black;
     background-color: rgb(103, 95, 95);
     color: #0109a1;
 }
@@ -71,8 +71,9 @@
 }
 
 .members_list {
-    width: 200px;
+    width: 150px;
     background-color:rgb(103, 95, 95);
+    border-left: 1px solid black;
     color: #0109a1;
     overflow-y: auto;
 }
