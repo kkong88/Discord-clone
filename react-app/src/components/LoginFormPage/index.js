@@ -63,7 +63,7 @@ const LoginFormPage = () => {
           <div className="login_credential top_cred">
             <label htmlFor="email">Email</label>
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               value={email}
               onChange={updateEmail}

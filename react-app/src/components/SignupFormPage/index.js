@@ -48,7 +48,7 @@ function SignupFormPage() {
           <div className="sign_credential first_cred">
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
