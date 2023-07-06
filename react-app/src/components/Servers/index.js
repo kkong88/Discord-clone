@@ -22,25 +22,48 @@ const Servers = ({ userServers }) => {
     return <Redirect to={`/channels/${serverId}/${channelId}`} />;
   };
 
+  // return (
+  //   loaded && (
+  //     <div className="server_container">
+  //       {userServers?.map((server) => (
+  //         <NavLink
+  //           to={`/channels/${server.id}/${server.generalChannelId}`}
+  //           onClick={() => handleServerClick(server.id, server.generalChannelId)}
+  //           key={server.id}
+  //         >
+  //           <img
+  //           src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1685218930/3670157_ysakn3.png"
+  //             // src={server.picture}
+  //             className="servers_icon"
+  //             alt={server.name}
+  //           />
+  //         </NavLink>
+  //       ))}
+  //     </div>
+  //   )
+  // );
   return (
     loaded && (
-      <div className="server_container">
+      <div className="servers_container">
         {userServers?.map((server) => (
-          <NavLink
-            to={`/channels/${server.id}/${server.generalChannelId}`}
-            onClick={() => handleServerClick(server.id, server.generalChannelId)}
-            key={server.id}
-          >
-            <img
-            // src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255870/png-clipart-computer-icons-discord-logo-smiley-emoticon-smiley-miscellaneous-blue_zdbu60.png"
-              // src={server.picture}
-              alt={server.name}
-            />
-          </NavLink>
+          <div className="server_container" key={server.id}>
+            <NavLink
+              to={`/channels/${server.id}/${server.generalChannelId}`}
+              onClick={() => handleServerClick(server.id, server.generalChannelId)}
+            >
+              <img
+                src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1685218930/3670157_ysakn3.png"
+                // src={server.picture}
+                className="servers_icon"
+                alt={server.name}
+              />
+            </NavLink>
+          </div>
         ))}
       </div>
     )
   );
+
 };
 
 export default Servers;

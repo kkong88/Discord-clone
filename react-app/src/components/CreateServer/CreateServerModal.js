@@ -5,11 +5,13 @@ import CreateServer from ".";
 const CreateServerModal = () => {
   const [showModal, setShowModal] = useState(false);
 
+  const image = <img className="icon" src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1688601881/03-512_w2jexa.png" alt='update a server'  style={{width: '28px', height: '28px'}} />;
+
+
   return (
     <>
         <OpenModalButton
-        buttonText='Create a Server'
-        img scr="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686344690/50996310-positive-symbol-zoom-in-plus-sign-icon-isolated-on-white-background_cpbqme.jpg"
+        buttonText={image}
         modalComponent={<CreateServer />}
         />
     </>
