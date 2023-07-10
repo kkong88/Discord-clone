@@ -33,6 +33,7 @@
 } */
 
 
+/*
 .parent-container {
     display: flex;
     height: 100vh;
@@ -76,4 +77,80 @@
     border-left: 1px solid black;
     color: #0109a1;
     overflow-y: auto;
-}
+} */
+
+
+
+.parent-container {
+    display: flex;
+    height: 100vh;
+    align-items: stretch;
+  }
+
+  .channels {
+    width: 150px;
+    background-color: #2f3136;
+    color: #8e9297;
+    overflow-y: auto;
+    margin-left: 72px;
+    padding: 20px 0;
+    border-right: 1px solid #202225;
+  }
+
+  .current-channel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid #202225;
+    border-right: 2px solid #202225;
+    background-color: #36393f;
+    color: #dcddde;
+  }
+
+  .messages-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #36393f;
+  }
+
+  .chat-input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #202225;
+    background-color: #40444b;
+  }
+
+  .chat-input-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #dcddde;
+    background-color: #40444b;
+  }
+
+  .chat-input-container input::placeholder {
+    color: #dcddde;
+  }
+
+  .members_list {
+    width: 200px;
+    background-color: #2f3136;
+    color: #8e9297;
+    overflow-y: auto;
+    border-left: 1px solid #202225;
+  }
+
+  .channels a:visited {
+    color: #dcddde; /* Adjust as needed */
+  }
+
+  .channels a:hover {
+    color: #3076f8; /* Adjust as needed */
+  }
+
+  .channels a:active {
+    color: #2262f7; /* Adjust as needed */
+  }
