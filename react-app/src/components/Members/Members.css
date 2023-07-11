@@ -1,32 +1,43 @@
+.parent-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .members_list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 20%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background: linear-gradient(to bottom, #2f3136 0%, #36393f 100%);
+  color: #8e9297;
+  border-left: 1px solid #202225;
+  transition: all 0.3s ease;
+  scrollbar-width: thin;
+  scrollbar-color: #202225 #36393f;
+  padding: 10px;
+}
 
-  .member {
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
+.members_title {
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #202225;
+  color: #8e9297;
+  font-weight: bold;
+}
 
-  .members_title {
-    text-align: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
+.member {
+  padding: 10px 0;
+  border-bottom: 1px solid #202225;
+  color: #8e9297;
+  transition: all 0.3s ease;
+}
 
-  .parent-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .members_list {
-    width: 25%; /* adjust as per your needs */
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow-y: auto; /* for scrolling if content is more */
-    background: #f5f5f5; /* adjust as per your needs */
-    padding: 10px;
-  }
+.member:hover {
+  background-color: #4f5360;
+  color: #dcddde;
+}

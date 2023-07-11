@@ -38,16 +38,16 @@ const Sidebar = ({ userServers }) => {
         <CreateServerModal></CreateServerModal>
         <span className="home_seperator" />
         <Servers userServers={userServers} />
-        {serverid && <UpdateServerModal />}
         <NavLink to="/discovery">
           <div className="icon_container">
             <img
               src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686267131/6473-greencompass_zg6ulj.png"
               className="left_side_icon"
               alt="explore"
-            />
+              />
           </div>
         </NavLink>
+         {serverid && <UpdateServerModal className='updateServerModal' />}
       </div>
     )
   );

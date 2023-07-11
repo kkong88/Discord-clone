@@ -1,6 +1,7 @@
 import Channels from "../Channels";
 import "./Messages.css";
 
+
 import { useRef, useEffect } from "react";
 
 const Messages = ({ messages }) => {
@@ -14,7 +15,7 @@ const Messages = ({ messages }) => {
 //   }, [messages]);
   return (
     <div className="messages">
-      <h1>Messages</h1>
+      <h1> Messages</h1>
       {messages?.map((message) => (
         <div className="message" key={message.id}>
           <div className="message_user">

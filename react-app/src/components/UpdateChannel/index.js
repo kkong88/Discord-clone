@@ -149,10 +149,11 @@ const UpdateChannel = () => {
             )}
           </div>
         )}
+         <div className="add_channal_buttons">
+      <button className="cancel_button" onClick={() => closeModal()}>Cancel
+            </button>
+        </div>
       </div>
-      {/* <div onClick={checkChanges} className="esc_x_container">
-        <h5 className="esc">ESC</h5>
-      </div> */}
     </div>
   );
 };

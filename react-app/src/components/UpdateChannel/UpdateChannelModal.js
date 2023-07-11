@@ -14,7 +14,7 @@ const UpdateChannelModal = ({ channel, user }) => {
   return (
     <>
         <OpenModalButton
-          buttonText={<span style={{color: 'white', fontSize: '18px',}}>Update Channel</span>}
+          buttonText={<span style={{color: 'white', fontSize: '15px',}}>Update Channel</span>}
           modalComponent={<UpdateChannel channel={channel} user={user} />}
         />
     </>

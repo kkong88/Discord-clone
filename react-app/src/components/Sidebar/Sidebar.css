@@ -1,20 +1,31 @@
-.left_side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  position: fixed;
-  width: 72px;
-  height: 100vh;
-  background-color: #3068d8;
-  border-right: 1px solid black ;
-  gap: 10px;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #2f3136;
 }
+
+  .left_side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: fixed;
+    width: 72px;
+    height: 110vh;
+    background-color: #2f3136;
+    border-right: 1px solid #202225;
+    gap: 10px;
+  }
+
+  .updateServerModal {
+    margin-top: 400px;
+  }
 
   .icon_container {
     width: 44px;
     height: 44px;
-    background-color: #4b4e54;
+    background-color: #36393f;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -29,6 +40,6 @@
 
   .home_seperator {
     width: 60%;
-    height: 2px;
-    background-color: #373a3f;
+    height: 3px;
+    background-color: #202225;
   }
