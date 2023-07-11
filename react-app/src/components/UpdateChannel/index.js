@@ -92,7 +92,7 @@ const UpdateChannel = () => {
       <div className="container_for_options">
         <div className="edit_options">
           {name ? <h5>{name.toUpperCase()}</h5> : <h5>Channel Settings</h5>}
-          <h4 onClick={() => setSelected("Overview")}>Overview</h4>
+          <h4 onClick={() => setSelected("Overview")}></h4>
           <div className="delete" onClick={handleDelete}>
             <h3>Delete Channel</h3>
           </div>
@@ -106,7 +106,7 @@ const UpdateChannel = () => {
             </h3>
             <div className="overview">
               <div className="edit_channel_name">
-                <label htmlFor="channel_name">CHANNEL NAME</label>
+                <label htmlFor="channel_name">CHANNEL NAME </label>
                 <input
                   id="channel_name"
                   className="channel_name"
@@ -128,8 +128,6 @@ const UpdateChannel = () => {
                 <div className="require_save_message">
                   <h4>Careful</h4>
                   <div className="combine_--">
-                    <h4 className="left-">-</h4>
-                    <h4 className="right-">-</h4>
                   </div>
                   <h4>you have unsaved changes!</h4>
                 </div>
