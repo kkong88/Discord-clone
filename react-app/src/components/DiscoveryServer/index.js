@@ -47,7 +47,7 @@ const DiscoveryPage = () => {
       <div className="all_servers_container">
         <div className="all_servers_header">
           <div className="header_text">
-            <h1>Find a server to join</h1>
+            <h1>Find Your Community to Join</h1>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ const DiscoveryPage = () => {
                       <h6 className="server_description">
                         {server.description}
                       </h6>
-                      <h6 className="members_length"> 
+                      <h6 className="members_length">
                         {server.membersLength} members
                       </h6>
                     </div>

@@ -16,7 +16,7 @@ const Sidebar = ({ userServers }) => {
   const CurrentServer = useSelector((state) =>  state.serversReducer.currentServer)
   const serverid = CurrentServer.id
   const serverOwnerId = CurrentServer.owner
-  const isOwner = user.id === serverOwnerId.id
+  const isOwner = user.id === serverOwnerId?.id
 
 
   const handleHomeClick = async (channelId) => {
@@ -36,6 +36,7 @@ const Sidebar = ({ userServers }) => {
           <NavLink
             className="home_button"
             to={'/'}
+            title={userServers.name}
           >
             <div className="icon_container">
               <img
@@ -48,7 +49,8 @@ const Sidebar = ({ userServers }) => {
             <p className="username">{user.username}</p>
           <CreateServerModal></CreateServerModal>
           <span className="home_seperator" />
-          <Servers userServers={userServers} />
+          <Servers userServers={userServers}
+          />
           <NavLink to="/discovery">
             <div className="icon_container">
               <img

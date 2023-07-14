@@ -31,10 +31,18 @@ html, body {
   margin: 5px 0;
 }
 
+.icon_container:hover {
+  background-color: green;
+}
+
 .left_side_icon {
   height: 28px;
   width: 28px;
   border-radius: 100%;
+}
+
+.icon_container:hover .left_side_icon {
+  background-color: green;
 }
 
 .home_seperator {
@@ -69,6 +77,10 @@ html, body {
   cursor: pointer;
   margin-top: 10px;
   transition: background-color 0.3s ease;
+}
+
+.logout_button:hover {
+  background-color: green;
 }
 
 .top_elements {
