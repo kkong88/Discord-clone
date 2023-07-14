@@ -15,7 +15,8 @@ const Sidebar = ({ userServers }) => {
   const userServer = useSelector((state) => state.serversReducer.userServers)
   const CurrentServer = useSelector((state) =>  state.serversReducer.currentServer)
   const serverid = CurrentServer.id
-
+  const serverOwnerId = CurrentServer.owner
+  const isOwner = user.id === serverOwnerId.id
 
 
   const handleHomeClick = async (channelId) => {
@@ -38,7 +39,7 @@ const Sidebar = ({ userServers }) => {
           >
             <div className="icon_container">
               <img
-                src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1686255057/discord-icon-all-the-cool-kids-are-moving-discord-podfeet-podcasts-0_puo5ol.png"
+                src={user.profilePicture}
                 className="left_side_icon"
                 alt="home"
               />
@@ -57,7 +58,7 @@ const Sidebar = ({ userServers }) => {
               />
             </div>
           </NavLink>
-          {serverid && <UpdateServerModal className='updateServerModal' />}
+          {serverid && isOwner && <UpdateServerModal className='updateServerModal' />}
         </div>
          <div className="user_container">
           <button onClick={handleLogout} className="logout_button">Logout</button>
