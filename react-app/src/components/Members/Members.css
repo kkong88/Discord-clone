@@ -13,12 +13,10 @@
   top: 0;
   bottom: 0;
   overflow-y: auto;
-  background: linear-gradient(to bottom, #2f3136 0%, #36393f 100%);
-  color: #8e9297;
+  background-color: #36393f;
+  color: #dcddde;
   border-left: 1px solid #202225;
   transition: all 0.3s ease;
-  scrollbar-width: thin;
-  scrollbar-color: #202225 #36393f;
   padding: 10px;
 }
 
@@ -33,11 +31,27 @@
 .member {
   padding: 10px 0;
   border-bottom: 1px solid #202225;
-  color: #8e9297;
+  color: #dcddde;
   transition: all 0.3s ease;
 }
 
 .member:hover {
   background-color: #4f5360;
-  color: #dcddde;
+}
+
+.member_content {
+  display: flex;
+  align-items: center;
+}
+
+.member_pfp {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.member h4 {
+  margin: 0;
+  font-weight: 500;
 }

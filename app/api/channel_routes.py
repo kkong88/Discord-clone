@@ -82,6 +82,19 @@ def post_channel_message(channel_id):
 #     db.session.commit()
 #     return new_message.to_dict()
 
+@channel_routes.route('/<int:channel_id>/messages/<int:message_id>', methods=['PUT', 'DELETE'])
+def update_delete_message(message_id):
+       message = ChannelMessage.query.get(message_id)
+
+       if request.method == 'PUT':
+              message.content = request.form['content']
+              db.session.commit()
+              return message.to_dict()
+
+       if request.method == 'DELETE':
+              db.session.delete(message)
+              db.session.commit()
+              return {'messageId': message.id}
 
 
 @channel_routes.route('/<int:channel_id>/members')

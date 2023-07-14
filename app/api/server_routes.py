@@ -74,6 +74,7 @@ def get_all_server_members(server_id):
 
     server_members= ServerMember.query.filter(ServerMember.server_id == server_id).all()
     return {'serverMembers': {member.id:member.to_dict() for member in server_members}}
+
 #find one server member
 @servers_routes.route('<int:server_id>/members', methods = ['POST'])
 def post_server_member(server_id):

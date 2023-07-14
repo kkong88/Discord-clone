@@ -10,6 +10,7 @@ const SET_CURRENT_CHANNEL = "currentChannel/SetCurrentChannel";
 const CLEAR_CURRENT_CHANNEL = "currentChannel/Clear";
 
 
+
 export const setChannels = (channels) => {
     return {
         type: SET_SERVER_CHANNELS,
@@ -136,6 +137,29 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
     return newMessage;
   };
 
+  //update message
+  const UPDATE_CHANNEL_MESSAGE = "currentChannel/UpdateMessage";
+  export const updateChannelMessage = (message) => {
+    return { type: UPDATE_CHANNEL_MESSAGE, message };
+  };
+
+  export const updateMessage =
+  (channelId, messageId, formData) => async (dispatch) => {
+    const res = await fetch(
+      `/api/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const updatedMessage = await res.json();
+
+    dispatch(updateChannelMessage(updatedMessage));
+    return updatedMessage;
+  };
+
+
+
 const channelsReducer = (
     state = {
       channels: [],
@@ -190,6 +214,7 @@ const channelsReducer = (
         newState.currentChannel = null;
         return newState;
       }
+
       case ADD_CHANNEL_MESSAGE: {
         let newState = {...state}
         newState = global.structuredClone(newState) // using gloabl.structuredClone due to nested state causing mutation of state instead we created a deep copy to reassign it.
@@ -199,6 +224,13 @@ const channelsReducer = (
         newState.currentChannel.messages[action.messages.id] = action.messages;
         return newState;
       }
+
+      case UPDATE_CHANNEL_MESSAGE: {
+        const newState = {...state}
+        newState.currentChannel.messages[action.messages.id] = action.messages;
+        return newState
+      }
+
       default:
         return state;
     }
