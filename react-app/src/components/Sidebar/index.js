@@ -3,7 +3,7 @@ import Servers from "../Servers";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneChannel } from "../../store/channels";
-import { logout } from "../../store/session"; // import logout action
+import { logout } from "../../store/session";
 import CreateServerModal from "../CreateServer/CreateServerModal";
 import UpdateServerModal from "../UpdateServer/UpdateServerModal";
 import { useParams } from 'react-router-dom';
@@ -11,9 +11,9 @@ import { useParams } from 'react-router-dom';
 const Sidebar = ({ userServers }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
-  const history = useHistory()
   const userServer = useSelector((state) => state.serversReducer.userServers)
   const CurrentServer = useSelector((state) =>  state.serversReducer.currentServer)
+  const history = useHistory()
   const serverid = CurrentServer.id
   const serverOwnerId = CurrentServer.owner
   const isOwner = user.id === serverOwnerId?.id
@@ -23,8 +23,14 @@ const Sidebar = ({ userServers }) => {
     await dispatch(getOneChannel(channelId)).then(() => dispatch(userServer));
   };
 
-  const handleLogout = async () => { // logout function
-    await dispatch(logout());
+  // const handleLogout = async () => {
+  //   await dispatch(logout());
+  //   history.push('/')
+  // };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
     history.push('/')
   };
 
