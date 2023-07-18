@@ -148,7 +148,7 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
     const res = await fetch(
       `/api/channels/${channelId}/messages/${messageId}`,
       {
-        method: "POST",
+        method: "PUT",
         body: formData,
       }
     );
@@ -157,6 +157,23 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
     dispatch(updateChannelMessage(updatedMessage));
     return updatedMessage;
   };
+
+  //delete Message
+  const DELETE_CHANNEL_MESSAGE = 'currentChannel/DeleteMessage'
+  export const removeChannelMessage = (messageId) => {
+    return { type: DELETE_CHANNEL_MESSAGE, messageId}
+  }
+
+  export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
+    const res = await fetch(
+      `/api/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "DELETE"
+      }
+    )
+    const deletedMessage = await res.json()
+    dispatch(removeChannelMessage(deletedMessage.messageId))
+  }
 
 
 
@@ -228,6 +245,12 @@ const channelsReducer = (
       case UPDATE_CHANNEL_MESSAGE: {
         const newState = {...state}
         newState.currentChannel.messages[action.messages.id] = action.messages;
+        return newState
+      }
+
+      case DELETE_CHANNEL_MESSAGE: {
+        const newState = {...state}
+        delete newState.currentChannel.messages[action.messageId]
         return newState
       }
 
