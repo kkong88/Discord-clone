@@ -11,7 +11,8 @@
 }
 
 .username {
-  margin: 0 0 10px;  /* Add 10px bottom margin to space out username and message content */
+  margin: 10 0 10px;  /* Add 10px bottom margin to space out username and message content */
+  text-decoration: bolder;
 }
 
 .message_user_info {
