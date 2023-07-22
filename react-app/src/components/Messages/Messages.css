@@ -1,15 +1,23 @@
 .message_user {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+}
 
-  .message_pfp {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
+.message_pfp {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
-  .username {
-    margin: 0;
-  }
+.username {
+  margin: 0 0 10px;  /* Add 10px bottom margin to space out username and message content */
+}
+
+.message_user_info {
+  margin-left: 10px;  /* Add 10px left margin to space out profile picture and username */
+}
+
+.message {
+  margin: 10px 0;  /* Add 10px vertical margin between messages */
+}
