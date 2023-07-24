@@ -26,7 +26,7 @@ const MessageOptions = ({
             {/* user for edit must be message sender */}
             {user?.id === message?.senderId && (
               <button onClick={() => setShowEditMessage(message.id)}>
-                <img src="/svgs/pencil.svg" alt="edit" className="edit" />
+                {/* <img src="/svgs/pencil.svg" alt="edit" className="edit" /> */}
               </button>
             )}
             <button

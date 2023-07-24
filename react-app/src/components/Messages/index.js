@@ -18,7 +18,12 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
     <div className="messages">
       <h1>Messages</h1>
       {messages?.map((message) => (
-        <div className="message" key={message.id}>
+        <div
+          className="message"
+          key={message.id}
+          onMouseEnter={() => setHover(message.id)}
+          onMouseLeave={() => setHover(null)}
+        >
           <div className="message_content">
             <div className="message_user">
               <img
@@ -32,17 +37,15 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
                 {showEditMessage === message.id && (
                   <Chat
                     messageToEdit={message}
-                    handleUpdateMessage={handleUpdateMessage}
+                    sendMessage={handleUpdateMessage}
                     setShowEditMessage={setShowEditMessage}
                   />
                 )}
               </div>
             </div>
-            {hover === message.id && message.senderId !== 1 && (
+            {hover === message.id && message.senderId === 1 && (
               <div className="message_more">
-                <button
-                  onClick={() => (options ? setOptions(false) : setOptions(true))}
-                >
+                <button onClick={() => setOptions((prevOptions) => !prevOptions)}>
                   {/* <img
                     src="/svgs/dot-dot.svg"
                     alt="more"

@@ -164,6 +164,16 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
     return { type: DELETE_CHANNEL_MESSAGE, messageId}
   }
 
+  // export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
+  //   const res = await fetch(
+  //     `/api/channels/${channelId}/messages/${messageId}`,
+  //     {
+  //       method: "DELETE"
+  //     }
+  //   )
+  //   const deletedMessage = await res.json()
+  //   dispatch(removeChannelMessage(deletedMessage.messageId))
+  // }
   export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
     const res = await fetch(
       `/api/channels/${channelId}/messages/${messageId}`,
@@ -171,9 +181,14 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
         method: "DELETE"
       }
     )
-    const deletedMessage = await res.json()
-    dispatch(removeChannelMessage(deletedMessage.messageId))
-  }
+
+    if (res.ok) {
+        const deletedMessage = await res.json();
+        dispatch(removeChannelMessage(deletedMessage.messageId));
+    } else {
+        console.error("Failed to delete message");
+    }
+}
 
 
 

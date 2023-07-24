@@ -59,39 +59,42 @@ const CurrentChannel = () => {
     socket?.emit("message", { message, room : socketRoom });
   };
 
+  // const handleUpdateMessage = async (messageId, formData) => {
+  //   let messageToUpdate = messages.find((message) => message.id === messageId);
+  //   let updatedMessage = await dispatch(
+  //     updateChannelMessage(channelId, messageId, formData)
+  //   );
+  //   let newMessages = [...messages];
+  //   newMessages[newMessages.indexOf(messageToUpdate)] = updatedMessage;
+  //   setMessages(newMessages);
+  // };
+
   const handleUpdateMessage = async (messageId, formData) => {
+    // Use the Redux state `messages` instead of local state
     let messageToUpdate = messages.find((message) => message.id === messageId);
-    let updatedMessage = await dispatch(
-      updateChannelMessage(channelId, messageId, formData)
-    );
-    let newMessages = [...messages];
-    newMessages[newMessages.indexOf(messageToUpdate)] = updatedMessage;
-    setMessages(newMessages);
+    await dispatch(updateChannelMessage(channelId, messageId, formData));
   };
 
+  // const handleDeleteMessage = async (channelId, messageId) => {
+  //   await dispatch(deleteChannelMessage(channelId, messageId));
+  //   let deletedMessage = messages.find((message) => message.id === messageId);
+  //   setMessages(messages.filter((message) => message !== deletedMessage));
+  // };
   const handleDeleteMessage = async (channelId, messageId) => {
     await dispatch(deleteChannelMessage(channelId, messageId));
-    let deletedMessage = messages.find((message) => message.id === messageId);
-    setMessages(messages.filter((message) => message !== deletedMessage));
   };
-
-
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
 
-  // return (
-  //   <>
-  //     {messages && <Messages messages={Object.values(messages)} />}
-  //     <Chat sendMessage={sendMessage} classname="input" />
-  //   </>
-  // );
+
   return (
     <div className="current-channel">
       {messages && (
         <div className="messages-container">
           <Messages messages={Object.values(messages)}
           handleDeleteMessage={handleDeleteMessage}
-          handleUpdateMessage={handleUpdateMessage} />
+          handleUpdateMessage={handleUpdateMessage}
+          />
         </div>
       )}
       <div className="chat-input-container">
