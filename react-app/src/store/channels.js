@@ -264,7 +264,8 @@ const channelsReducer = (
       }
 
       case DELETE_CHANNEL_MESSAGE: {
-        const newState = {...state}
+        let newState = {...state}
+        newState = global.structuredClone(newState)
         delete newState.currentChannel.messages[action.messageId]
         return newState
       }
