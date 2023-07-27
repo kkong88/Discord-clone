@@ -59,19 +59,20 @@ const CurrentChannel = () => {
     socket?.emit("message", { message, room : socketRoom });
   };
 
+  const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
   // const handleUpdateMessage = async (messageId, formData) => {
-  //   let messageToUpdate = messages.find((message) => message.id === messageId);
-  //   let updatedMessage = await dispatch(
-  //     updateChannelMessage(channelId, messageId, formData)
-  //   );
-  //   let newMessages = [...messages];
-  //   newMessages[newMessages.indexOf(messageToUpdate)] = updatedMessage;
-  //   setMessages(newMessages);
-  // };
+    //   let messageToUpdate = messages.find((message) => message.id === messageId);
+    //   let updatedMessage = await dispatch(
+      //     updateChannelMessage(channelId, messageId, formData)
+      //   );
+      //   let newMessages = [...messages];
+      //   newMessages[newMessages.indexOf(messageToUpdate)] = updatedMessage;
+      //   setMessages(newMessages);
+      // };
 
-  const handleUpdateMessage = async (messageId, formData) => {
+  const handleUpdateMessage = async (messageId, formData, messages) => {
     // Use the Redux state `messages` instead of local state
-    let messageToUpdate = messages.find((message) => message.id === messageId);
+    // let messageToUpdate = messages.find((message) => message.id === messageId);
     await dispatch(updateChannelMessage(channelId, messageId, formData));
   };
 
@@ -84,7 +85,6 @@ const CurrentChannel = () => {
     await dispatch(deleteChannelMessage(channelId, messageId));
   };
 
-  const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
 
 
   return (

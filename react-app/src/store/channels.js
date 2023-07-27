@@ -139,12 +139,13 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
 
   //update message
   const UPDATE_CHANNEL_MESSAGE = "currentChannel/UpdateMessage";
-  export const updateChannelMessage = (message) => {
-    return { type: UPDATE_CHANNEL_MESSAGE, message };
+  export const updateChannelMessage = (messages) => {
+    return { type: UPDATE_CHANNEL_MESSAGE, messages };
   };
 
   export const updateMessage =
   (channelId, messageId, formData) => async (dispatch) => {
+    console.log(channelId,messageId, "look!@!@!@!@")
     const res = await fetch(
       `/api/channels/${channelId}/messages/${messageId}`,
       {
