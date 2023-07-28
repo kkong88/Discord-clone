@@ -37,7 +37,8 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
                 {showEditMessage === message.id && (
                   <Chat
                     messageToEdit={message}
-                    sendMessage={handleUpdateMessage}
+                    // sendMessage={handleUpdateMessage}
+                    sendMessage={(formData) => handleUpdateMessage(messages.id, formData, messages, setShowEditMessage)}
                     setShowEditMessage={setShowEditMessage}
                   />
                 )}
@@ -46,11 +47,11 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
             {hover === message.id && message.senderId === 1 && (
               <div className="message_more">
                 <button onClick={() => setOptions((prevOptions) => !prevOptions)}>
-                  {/* <img
+                  <img
                     src="/svgs/dot-dot.svg"
                     alt="more"
                     className="delete"
-                  ></img> */}
+                  ></img>
                 </button>
               </div>
             )}
@@ -62,6 +63,7 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
                 server={server}
                 channel={channel}
                 setShowEditMessage={setShowEditMessage}
+                handleUpdateMessage={(messageId, formData) => handleUpdateMessage(messageId, formData, messages, setShowEditMessage)}
               />
             )}
           </div>

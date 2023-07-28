@@ -138,26 +138,26 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
   };
 
   //update message
-  const UPDATE_CHANNEL_MESSAGE = "currentChannel/UpdateMessage";
-  export const updateChannelMessage = (messages) => {
-    return { type: UPDATE_CHANNEL_MESSAGE, messages };
-  };
+//update message
+const UPDATE_CHANNEL_MESSAGE = "currentChannel/UpdateMessage";
+export const updateChannelMessage = (message) => {
+  return { type: UPDATE_CHANNEL_MESSAGE, message };
+};
 
-  export const updateMessage =
+export const updateMessage =
   (channelId, messageId, formData) => async (dispatch) => {
     console.log(channelId,messageId, "look!@!@!@!@")
-    const res = await fetch(
-      `/api/channels/${channelId}/messages/${messageId}`,
-      {
+    const res = await fetch(`/api/channels/${channelId}/messages/${messageId}`,{
         method: "PUT",
         body: formData,
       }
     );
     const updatedMessage = await res.json();
-
     dispatch(updateChannelMessage(updatedMessage));
+    console.log(updateMessage,"am i working?@!@!@!@?!@?")
     return updatedMessage;
   };
+
 
   //delete Message
   const DELETE_CHANNEL_MESSAGE = 'currentChannel/DeleteMessage'
@@ -257,10 +257,9 @@ const channelsReducer = (
         newState.currentChannel.messages[action.messages.id] = action.messages;
         return newState;
       }
-
       case UPDATE_CHANNEL_MESSAGE: {
         const newState = {...state}
-        newState.currentChannel.messages[action.messages.id] = action.messages;
+        newState.currentChannel.messages[action.message.id] = action.message;
         return newState
       }
 

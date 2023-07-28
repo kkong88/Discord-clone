@@ -70,10 +70,14 @@ const CurrentChannel = () => {
       //   setMessages(newMessages);
       // };
 
-  const handleUpdateMessage = async (messageId, formData, messages) => {
-    // Use the Redux state `messages` instead of local state
-    // let messageToUpdate = messages.find((message) => message.id === messageId);
+  // const handleUpdateMessage = async (messageId, formData, messages) => {
+  //   // Use the Redux state `messages` instead of local state
+  //   // let messageToUpdate = messages.find((message) => message.id === messageId);
+  //   await dispatch(updateChannelMessage(channelId, messageId, formData));
+  // };
+  const handleUpdateMessage = async (messageId, formData, messages, setShowEditMessage) => {
     await dispatch(updateChannelMessage(channelId, messageId, formData));
+    setShowEditMessage(null); // close the editing bar
   };
 
   // const handleDeleteMessage = async (channelId, messageId) => {
