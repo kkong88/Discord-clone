@@ -34,12 +34,12 @@ export const sendMessage = (message) => {
     }
 }
 
-export const updateMessage = (message) => {
-    return {
-        type: UPDATE_MESSAGE,
-        message
-    }
-}
+// export const updateMessage = (message) => {
+//     return {
+//         type: UPDATE_MESSAGE,
+//         message
+//     }
+// }
 
 export const deleteMessage = (messageId) => {
     return {
@@ -61,11 +61,11 @@ const messageReducer = (state = initialState, action) => {
         //     newState[action.message.id] = action.message
         //     return newState
         // }
-        case UPDATE_MESSAGE: {
-            newState[action.message.id].content = action.message.content
-            newState[action.message.id].content = action.message.updateAt
-            return newState
-        }
+        // case UPDATE_MESSAGE: {
+        //     newState[action.message.id].content = action.message.content
+        //     newState[action.message.id].content = action.message.updateAt
+        //     return newState
+        // }
         case DELETE_MESSAGE: {
             delete newState[action.messageId]
             return newState

@@ -137,7 +137,7 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
     return newMessage;
   };
 
-  //update message
+
 //update message
 const UPDATE_CHANNEL_MESSAGE = "currentChannel/UpdateMessage";
 export const updateChannelMessage = (message) => {
@@ -146,7 +146,7 @@ export const updateChannelMessage = (message) => {
 
 export const updateMessage =
   (channelId, messageId, formData) => async (dispatch) => {
-    console.log(channelId,messageId, "look!@!@!@!@")
+    console.log(channelId, messageId, formData, `/api/channels/${channelId}/messages/${messageId}`)
     const res = await fetch(`/api/channels/${channelId}/messages/${messageId}`,{
         method: "PUT",
         body: formData,
@@ -165,16 +165,6 @@ export const updateMessage =
     return { type: DELETE_CHANNEL_MESSAGE, messageId}
   }
 
-  // export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
-  //   const res = await fetch(
-  //     `/api/channels/${channelId}/messages/${messageId}`,
-  //     {
-  //       method: "DELETE"
-  //     }
-  //   )
-  //   const deletedMessage = await res.json()
-  //   dispatch(removeChannelMessage(deletedMessage.messageId))
-  // }
   export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
     const res = await fetch(
       `/api/channels/${channelId}/messages/${messageId}`,
@@ -258,7 +248,8 @@ const channelsReducer = (
         return newState;
       }
       case UPDATE_CHANNEL_MESSAGE: {
-        const newState = {...state}
+        let newState = {...state}
+        newState = global.structuredClone(newState)
         newState.currentChannel.messages[action.message.id] = action.message;
         return newState
       }

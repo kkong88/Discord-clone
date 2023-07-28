@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import { postMessage, addChannelMessage, getOneChannel, deleteChannelMessage, updateChannelMessage } from "../../store/channels";
+import { postMessage, addChannelMessage, getOneChannel, deleteChannelMessage, updateChannelMessage, updateMessage } from "../../store/channels";
 import Messages from "../Messages";
 import Chat from "../Chat";
 
@@ -49,6 +49,7 @@ const useSocket = (channelId, dispatch) => {
 const CurrentChannel = () => {
   const currentChannel = useSelector((state) => state.channelsReducer?.currentChannel);
   const channelId = currentChannel?.id;
+  const messageId = currentChannel?.messages?.id
   const dispatch = useDispatch();
   const { socket, socketRoom } = useSocket(channelId, dispatch);
   const [message, setMessages] = useState([])
@@ -76,7 +77,8 @@ const CurrentChannel = () => {
   //   await dispatch(updateChannelMessage(channelId, messageId, formData));
   // };
   const handleUpdateMessage = async (messageId, formData, messages, setShowEditMessage) => {
-    await dispatch(updateChannelMessage(channelId, messageId, formData));
+    console.log("MESSAGE ID:", messageId)
+    await dispatch(updateMessage(channelId, messageId, formData));
     setShowEditMessage(null); // close the editing bar
   };
 

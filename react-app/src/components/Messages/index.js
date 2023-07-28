@@ -38,7 +38,7 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
                   <Chat
                     messageToEdit={message}
                     // sendMessage={handleUpdateMessage}
-                    sendMessage={(formData) => handleUpdateMessage(messages.id, formData, messages, setShowEditMessage)}
+                    sendMessage={(formData) => handleUpdateMessage(message.id, formData, messages, setShowEditMessage)}
                     setShowEditMessage={setShowEditMessage}
                   />
                 )}

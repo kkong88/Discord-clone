@@ -67,43 +67,14 @@ def post_channel_message(channel_id):
     db.session.commit()
     return new_message.to_dict()
 
-# @channel_routes.route('/<int:channel_id>/messages', methods=['POST'])
-# def post_channel_message(channel_id):
-#     data = request.json
-#     content = data.get('content')
-
-#     new_message = ChannelMessage(
-#         channel_id=channel_id,
-#         sender_id=current_user.id,
-#         content=content,
-#         picture='testing.url'
-#     )
-#     db.session.add(new_message)
-#     db.session.commit()
-#     return new_message.to_dict()
-
-# @channel_routes.route('/<int:channel_id>/messages/<int:message_id>', methods=['PUT', 'DELETE'])
-# def update_delete_message(channel_id,message_id):
-#        message = ChannelMessage.query.get(message_id)
-#        print(message,"SADFSADFSDAFSDF")
-
-#        if request.method == 'PUT':
-#               message.content = request.form['content']
-#               db.session.commit()
-#               return message.to_dict()
-
-#        if request.method == 'DELETE':
-#               db.session.delete(message)
-#               db.session.commit()
-#               return {'messageId': message.id}
-
 @channel_routes.route('/<int:channel_id>/messages/<int:message_id>', methods=['PUT', 'DELETE'])
 def update_delete_message(channel_id,message_id):
+       print(message_id,"SDFSADFASDFASDFASDFASDFSADFASDFASDFASDFASDFASDFASFSADASDFSADF")
        message = ChannelMessage.query.get(message_id)
 
        if request.method == 'PUT':
-              data = request.get_json()
-              message.content = data.get('content')
+              data = request.form['content']
+              message.content = data
               db.session.commit()
               return message.to_dict()
 
