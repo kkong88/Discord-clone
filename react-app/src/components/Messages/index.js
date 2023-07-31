@@ -9,10 +9,18 @@ import { useSelector } from "react-redux";
 const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
   const [hover, setHover] = useState(false);
   const [options, setOptions] = useState(null);
-  const [showEditMessage,setShowEditMessage] = useState(false)
+  const [showEditMessage, setShowEditMessage] = useState(false);
   const user = useSelector((state) => state.session.user);
   const server = useSelector((state) => state.servers?.currentServer);
   const channel = useSelector((state) => state.channels?.currentChannel);
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
 
   return (
     <div className="messages">
@@ -64,6 +72,7 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
           )}
         </div>
       ))}
+      <div ref={messagesEndRef} />
     </div>
   );
 };
