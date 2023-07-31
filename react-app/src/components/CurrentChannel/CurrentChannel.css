@@ -1,22 +1,3 @@
-/* .current-channel {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-  }
-
-  .messages-container {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    flex-direction: column-reverse;
-  }
-
-  .chat-input-container {
-    padding: 10px;
-    border-top: 1px solid gray;
-  } */
 
   .current-channel {
     display: flex;
@@ -52,7 +33,7 @@
     color: #dcddde;
     background-color: #40444b;
   }
-  
+
   .chat-input-container input::placeholder {
     color: #dcddde;
   }

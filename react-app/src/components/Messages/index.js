@@ -24,49 +24,44 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
           onMouseEnter={() => setHover(message.id)}
           onMouseLeave={() => setHover(null)}
         >
+          <img
+            className="message_pfp"
+            src={message.senderProfilePicture}
+            alt="pfp"
+          />
           <div className="message_content">
-            <div className="message_user">
-              <img
-                className="message_pfp"
-                src={message.senderProfilePicture}
-                alt="pfp"
-              />
-              <div className="message_user_info">
-                <h4 className="username">{message.senderUsername}</h4>
-                {showEditMessage !== message.id && <div>{message.content}</div>}
-                {showEditMessage === message.id && (
-                  <Chat
-                    messageToEdit={message}
-                    // sendMessage={handleUpdateMessage}
-                    sendMessage={(formData) => handleUpdateMessage(message.id, formData, messages, setShowEditMessage)}
-                    setShowEditMessage={setShowEditMessage}
-                  />
-                )}
-              </div>
-            </div>
-            {hover === message.id && message.senderId === 1 && (
-              <div className="message_more">
-                <button onClick={() => setOptions((prevOptions) => !prevOptions)}>
-                  <img
-                    src="/svgs/dot-dot.svg"
-                    alt="more"
-                    className="delete"
-                  ></img>
-                </button>
-              </div>
-            )}
-            {options && message.id === hover && (
-              <MessageOptions
-                handleDeleteMessage={handleDeleteMessage}
-                message={message}
-                user={user}
-                server={server}
-                channel={channel}
+            <h4 className="username">{message.senderUsername}</h4>
+            {showEditMessage !== message.id && <div className="content">{message.content}</div>}
+            {showEditMessage === message.id && (
+              <Chat
+                messageToEdit={message}
+                sendMessage={(formData) => handleUpdateMessage(message.id, formData, messages, setShowEditMessage)}
                 setShowEditMessage={setShowEditMessage}
-                handleUpdateMessage={(messageId, formData) => handleUpdateMessage(messageId, formData, messages, setShowEditMessage)}
               />
             )}
           </div>
+          {hover === message.id && message.senderId === 1 && (
+            <div className="message_more">
+              <button onClick={() => setOptions((prevOptions) => !prevOptions)}>
+                <img
+                  src="/svgs/dot-dot.svg"
+                  alt="more"
+                  className="delete"
+                ></img>
+              </button>
+            </div>
+          )}
+          {options && message.id === hover && (
+            <MessageOptions
+              handleDeleteMessage={handleDeleteMessage}
+              message={message}
+              user={user}
+              server={server}
+              channel={channel}
+              setShowEditMessage={setShowEditMessage}
+              handleUpdateMessage={(messageId, formData) => handleUpdateMessage(messageId, formData, messages, setShowEditMessage)}
+            />
+          )}
         </div>
       ))}
     </div>

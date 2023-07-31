@@ -69,7 +69,7 @@ def post_channel_message(channel_id):
 
 @channel_routes.route('/<int:channel_id>/messages/<int:message_id>', methods=['PUT', 'DELETE'])
 def update_delete_message(channel_id,message_id):
-       print(message_id,"SDFSADFASDFASDFASDFASDFSADFASDFASDFASDFASDFASDFASFSADASDFSADF")
+
        message = ChannelMessage.query.get(message_id)
 
        if request.method == 'PUT':
