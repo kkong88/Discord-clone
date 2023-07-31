@@ -44,9 +44,9 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
             <div className="message_more">
               <button onClick={() => setOptions((prevOptions) => !prevOptions)}>
                 <img
-                  src="/svgs/dot-dot.svg"
+                  src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1690843637/three-horizontal-dots-icon-6_bonzt1.png"
                   alt="more"
-                  className="delete"
+                  className="message_img"
                 ></img>
               </button>
             </div>
