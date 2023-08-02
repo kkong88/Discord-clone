@@ -10,7 +10,6 @@ const useSocket = (channelId, dispatch) => {
   const [socketRoom, setSocketRoom] = useState(null);
 
 
-
   useEffect(() => {
     const socket = io();
 
@@ -19,8 +18,11 @@ const useSocket = (channelId, dispatch) => {
     });
 
     socket.on("message", (data) => {
-      console.log(data,"LINE 20 IN index")
       dispatch(addChannelMessage(data["message"]));
+    });
+
+    socket.on("message_deleted", (data) => {
+      dispatch(deleteChannelMessage(data.messageId));
     });
 
     setSocket(socket);
@@ -48,49 +50,30 @@ const useSocket = (channelId, dispatch) => {
 
 const CurrentChannel = () => {
   const currentChannel = useSelector((state) => state.channelsReducer?.currentChannel);
-  const channelId = currentChannel?.id;
-  const messageId = currentChannel?.messages?.id
+  const channelId = useSelector((state) => state.channelsReducer?.currentChannel?.id)
   const dispatch = useDispatch();
   const { socket, socketRoom } = useSocket(channelId, dispatch);
   const [message, setMessages] = useState([])
 
+
   const sendMessage = async (formData) => {
     const message = await dispatch(postMessage(channelId, formData));
-    console.log(message,"MESSAGE ON LINE 53!!!!!")
     socket?.emit("message", { message, room : socketRoom });
   };
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
-  // const handleUpdateMessage = async (messageId, formData) => {
-    //   let messageToUpdate = messages.find((message) => message.id === messageId);
-    //   let updatedMessage = await dispatch(
-      //     updateChannelMessage(channelId, messageId, formData)
-      //   );
-      //   let newMessages = [...messages];
-      //   newMessages[newMessages.indexOf(messageToUpdate)] = updatedMessage;
-      //   setMessages(newMessages);
-      // };
 
-  // const handleUpdateMessage = async (messageId, formData, messages) => {
-  //   // Use the Redux state `messages` instead of local state
-  //   // let messageToUpdate = messages.find((message) => message.id === messageId);
-  //   await dispatch(updateChannelMessage(channelId, messageId, formData));
-  // };
   const handleUpdateMessage = async (messageId, formData, messages, setShowEditMessage) => {
     console.log("MESSAGE ID:", messageId)
     await dispatch(updateMessage(channelId, messageId, formData));
     setShowEditMessage(null); // close the editing bar
   };
 
-  // const handleDeleteMessage = async (channelId, messageId) => {
-  //   await dispatch(deleteChannelMessage(channelId, messageId));
-  //   let deletedMessage = messages.find((message) => message.id === messageId);
-  //   setMessages(messages.filter((message) => message !== deletedMessage));
-  // };
   const handleDeleteMessage = async (channelId, messageId) => {
     await dispatch(deleteChannelMessage(channelId, messageId));
+    console.log(messageId,channelId,"!@!@!@!@!@!@!@!@!@")
+    socket?.emit("delete_message", { messageId, room: socketRoom });
   };
-
 
 
   return (

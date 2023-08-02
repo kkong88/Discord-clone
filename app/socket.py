@@ -42,3 +42,11 @@ def leave(data):
 def on_chat_sent(data):
     print(data,"____LOOOOOK ATT MEEEEEE________")
     emit('message', {'message': data['message']}, room=data['room'])
+
+
+@socketio.on('delete_message')
+def on_message_delete(data):
+    print(data,"WERWERWERWERWERWERWERWERWERWERWERWERWERWER")
+    messageId = data.get('messageId')
+    print(messageId, "LOOK HERERE YOIU DUMBaSSSSSSSSS")
+    emit('message_deleted', {'messageId': messageId}, room=data['room'])

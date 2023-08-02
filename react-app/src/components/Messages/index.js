@@ -61,12 +61,12 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
           )}
           {options && message.id === hover && (
             <MessageOptions
-              handleDeleteMessage={handleDeleteMessage}
               message={message}
               user={user}
               server={server}
               channel={channel}
               setShowEditMessage={setShowEditMessage}
+              handleDeleteMessage={handleDeleteMessage}
               handleUpdateMessage={(messageId, formData) => handleUpdateMessage(messageId, formData, messages, setShowEditMessage)}
             />
           )}

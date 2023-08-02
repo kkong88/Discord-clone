@@ -41,12 +41,12 @@ export const sendMessage = (message) => {
 //     }
 // }
 
-export const deleteMessage = (messageId) => {
-    return {
-        type: DELETE_MESSAGE,
-        messageId
-    }
-}
+// export const deleteMessage = (messageId) => {
+//     return {
+//         type: DELETE_MESSAGE,
+//         messageId
+//     }
+// }
 
 const initialState = {}
 
@@ -66,10 +66,10 @@ const messageReducer = (state = initialState, action) => {
         //     newState[action.message.id].content = action.message.updateAt
         //     return newState
         // }
-        case DELETE_MESSAGE: {
-            delete newState[action.messageId]
-            return newState
-        }
+        // case DELETE_MESSAGE: {
+        //     delete newState[action.messageId]
+        //     return newState
+        // }
         default:
             return state
     }

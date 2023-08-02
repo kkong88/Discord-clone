@@ -9,6 +9,8 @@ const MessageOptions = ({
   setShowEditMessage,
 }) => {
   const [loaded, setLoaded] = useState(false);
+  const messageId = message.id
+  const channelId = message.channelId
 
   useEffect(() => {
     setLoaded(true);
@@ -17,10 +19,6 @@ const MessageOptions = ({
   return (
     loaded && (
       <div>
-        {/* add when pinning implementation complete */}
-        {/* <button>
-          <img src="/svgs/pinned.svg" alt="pin" className="edit" />
-        </button> */}
         {/* user for these options must be server owner or message sender */}
         {(user?.id === message?.senderId || user?.id === server?.owner?.id) && (
           <>
@@ -31,9 +29,10 @@ const MessageOptions = ({
               </button>
             )}
             <button
-              onClick={() =>
-                handleDeleteMessage(message?.channelId, message?.id)
-              }
+              onClick={() => {
+                console.log(channelId,messageId, "I AM IN MESSAGEOPTION")
+                handleDeleteMessage(channelId, messageId)
+              }}
             >
               <img src="https://res.cloudinary.com/dip4w3xmy/image/upload/v1690844054/104-1047033_trash-bin-remove-recycle-delete-trashcan-can-comments-mobile-drawing-png_dhxffk.jpg" alt="delete" className="message_option_img" />
             </button>

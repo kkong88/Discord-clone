@@ -166,13 +166,13 @@ export const updateMessage =
   }
 
   export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
+    console.log(channelId,messageId, "ASDFSADFSADFSDAFSADFDSFSADFASDFSADF")
     const res = await fetch(
       `/api/channels/${channelId}/messages/${messageId}`,
       {
         method: "DELETE"
       }
     )
-
     if (res.ok) {
         const deletedMessage = await res.json();
         dispatch(removeChannelMessage(deletedMessage.messageId));
@@ -241,9 +241,6 @@ const channelsReducer = (
       case ADD_CHANNEL_MESSAGE: {
         let newState = {...state}
         newState = global.structuredClone(newState) // using gloabl.structuredClone due to nested state causing mutation of state instead we created a deep copy to reassign it.
-        // let newState = {...state}
-        // newState = {newState : {...state.currentChannel}}
-        // newState = {newState : {...state?.currentChannel?.messages}}
         newState.currentChannel.messages[action.messages.id] = action.messages;
         return newState;
       }
