@@ -22,7 +22,7 @@ const useSocket = (channelId, dispatch) => {
     });
 
     socket.on("message_deleted", (data) => {
-      dispatch(deleteChannelMessage(data.messageId));
+      dispatch(deleteChannelMessage(data.messageId, data.channelId));
     });
 
     setSocket(socket);
@@ -72,7 +72,7 @@ const CurrentChannel = () => {
   const handleDeleteMessage = async (channelId, messageId) => {
     await dispatch(deleteChannelMessage(channelId, messageId));
     console.log(messageId,channelId,"!@!@!@!@!@!@!@!@!@")
-    socket?.emit("delete_message", { messageId, room: socketRoom });
+    socket?.emit("delete_message", { messageId, channelId, room: socketRoom });
   };
 
 

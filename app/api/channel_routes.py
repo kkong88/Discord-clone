@@ -81,7 +81,7 @@ def update_delete_message(channel_id,message_id):
        if request.method == 'DELETE':
               db.session.delete(message)
               db.session.commit()
-              return {'messageId': message.id}
+              return {'messageId': message.id, 'channelId': channel_id}
 
 
 @channel_routes.route('/<int:channel_id>/members')

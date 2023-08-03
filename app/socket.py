@@ -49,4 +49,5 @@ def on_message_delete(data):
     print(data,"WERWERWERWERWERWERWERWERWERWERWERWERWERWER")
     messageId = data.get('messageId')
     print(messageId, "LOOK HERERE YOIU DUMBaSSSSSSSSS")
-    emit('message_deleted', {'messageId': messageId}, room=data['room'])
+    emit('message_deleted', {'messageId': messageId}, data['channelId'], room=data['room'], broadcast=True)
+

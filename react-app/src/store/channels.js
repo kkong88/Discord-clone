@@ -161,8 +161,8 @@ export const updateMessage =
 
   //delete Message
   const DELETE_CHANNEL_MESSAGE = 'currentChannel/DeleteMessage'
-  export const removeChannelMessage = (messageId) => {
-    return { type: DELETE_CHANNEL_MESSAGE, messageId}
+  export const removeChannelMessage = (messageId, channelId) => {
+    return { type: DELETE_CHANNEL_MESSAGE, messageId, channelId}
   }
 
   export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
@@ -175,12 +175,11 @@ export const updateMessage =
     )
     if (res.ok) {
         const deletedMessage = await res.json();
-        dispatch(removeChannelMessage(deletedMessage.messageId));
+        dispatch(removeChannelMessage(deletedMessage.messageId, channelId));
     } else {
         console.error("Failed to delete message");
     }
 }
-
 
 
 const channelsReducer = (
@@ -257,7 +256,6 @@ const channelsReducer = (
         delete newState.currentChannel.messages[action.messageId]
         return newState
       }
-
       default:
         return state;
     }
