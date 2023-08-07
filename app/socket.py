@@ -50,4 +50,4 @@ def on_message_delete(data):
     messageId = data.get('messageId')
     print(messageId, "LOOK HERERE YOIU DUMBaSSSSSSSSS")
     emit('message_deleted', {'messageId': messageId}, data['channelId'], room=data['room'], broadcast=True)
-
+    # emit('message_deleted', {'messageId': messageId, 'channelId': data['channelId']}, room=data['room'], broadcast=True)

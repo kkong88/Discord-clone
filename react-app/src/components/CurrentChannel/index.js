@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import { postMessage, addChannelMessage, getOneChannel, deleteChannelMessage, updateChannelMessage, updateMessage } from "../../store/channels";
+import { postMessage, addChannelMessage, getOneChannel, deleteChannelMessage, updateChannelMessage, updateMessage, setCurrentChannel } from "../../store/channels";
 import Messages from "../Messages";
 import Chat from "../Chat";
 
@@ -65,7 +65,7 @@ const CurrentChannel = () => {
 
   const handleUpdateMessage = async (messageId, formData, messages, setShowEditMessage) => {
     console.log("MESSAGE ID:", messageId)
-    await dispatch(updateMessage(channelId, messageId, formData));
+    await dispatch(updateMessage(channelId, messageId, formData))
     setShowEditMessage(null); // close the editing bar
   };
 

@@ -131,7 +131,6 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
 
     const newMessage = await res.json();
 
-    // dispatch(addChannelMessage(newMessage));
     dispatch(addChannelMessage(newMessage));
     console.log(newMessage,"LINE 135 in Channels reducer")
     return newMessage;
