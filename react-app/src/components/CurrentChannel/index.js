@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import { postMessage, addChannelMessage, getOneChannel, deleteChannelMessage, updateChannelMessage, updateMessage, setCurrentChannel } from "../../store/channels";
+import { postMessage, addChannelMessage, getOneChannel, deleteChannelMessage, updateChannelMessage, updateMessage, setCurrentChannel, confirmChannelMessageDeletion } from "../../store/channels";
 import Messages from "../Messages";
 import Chat from "../Chat";
 
@@ -22,7 +22,8 @@ const useSocket = (channelId, dispatch) => {
     });
 
     socket.on("message_deleted", (data) => {
-      dispatch(deleteChannelMessage(data.messageId, data.channelId));
+      // dispatch(deleteChannelMessage(data.messageId, data.channelId));
+      dispatch(confirmChannelMessageDeletion(data.messageId, data.channelId));
     });
 
     setSocket(socket);

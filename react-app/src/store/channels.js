@@ -8,6 +8,7 @@ const UPDATE_CHANNEL_ON_SERVER = "channels/UpdateChannel";
 const REMOVE_CHANNEL_FROM_SERVER = "channels/RemoveChannel";
 const SET_CURRENT_CHANNEL = "currentChannel/SetCurrentChannel";
 const CLEAR_CURRENT_CHANNEL = "currentChannel/Clear";
+const CONFIRM_CHANNEL_MESSAGE_DELETION = "currentChannel/ConfirmMessageDeletion";
 
 
 
@@ -180,6 +181,9 @@ export const updateMessage =
     }
 }
 
+export const confirmChannelMessageDeletion = (messageId, channelId) => {
+  return { type: CONFIRM_CHANNEL_MESSAGE_DELETION, messageId, channelId };
+};
 
 const channelsReducer = (
     state = {
@@ -255,6 +259,11 @@ const channelsReducer = (
         delete newState.currentChannel.messages[action.messageId]
         return newState
       }
+      case CONFIRM_CHANNEL_MESSAGE_DELETION: {
+        const liveChatState = global.structuredClone(state);
+        delete liveChatState.currentChannel.messages[action.messageId];
+        return liveChatState;
+    }
       default:
         return state;
     }

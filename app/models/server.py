@@ -32,7 +32,7 @@ class Server(db.Model):
 
     channels = db.relationship('Channel', backref='server', cascade="all,delete-orphan")
 
-    members = db.relationship('ServerMember', backref='server', cascade='all, delete-orphan')
+    members = db.relationship('ServerMember', backref='server', cascade='all, delete-orphan', passive_deletes=True)
 
     def to_dict(self):
         return {
