@@ -72,7 +72,6 @@ const CurrentChannel = () => {
 
   const handleDeleteMessage = async (channelId, messageId) => {
     await dispatch(deleteChannelMessage(channelId, messageId));
-    console.log(messageId,channelId,"!@!@!@!@!@!@!@!@!@")
     socket?.emit("delete_message", { messageId, channelId, room: socketRoom });
   };
 
