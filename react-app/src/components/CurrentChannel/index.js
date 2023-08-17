@@ -22,7 +22,6 @@ const useSocket = (channelId, dispatch) => {
     });
 
     socket.on("message_deleted", (data) => {
-      // dispatch(deleteChannelMessage(data.messageId, data.channelId));
       dispatch(confirmChannelMessageDeletion(data.messageId, data.channelId));
     });
 

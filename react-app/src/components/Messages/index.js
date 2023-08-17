@@ -48,7 +48,7 @@ const Messages = ({ messages, handleDeleteMessage, handleUpdateMessage }) => {
               />
             )}
           </div>
-          {hover === message.id && message.senderId === 1 && (
+          {hover === message.id && (message.senderId === user?.id || user?.id === server?.owner?.id)  && (
             <div className="message_more">
               <button onClick={() => setOptions((prevOptions) => !prevOptions)}>
                 <img
