@@ -63,11 +63,11 @@ const CurrentChannel = () => {
 
   const messages = useSelector((state) => state.channelsReducer?.currentChannel?.messages);
 
-  const handleUpdateMessage = async (messageId, formData, messages, setShowEditMessage) => {
-    console.log("MESSAGE ID:", messageId)
-    await dispatch(updateMessage(channelId, messageId, formData))
-    setShowEditMessage(null); // close the editing bar
-  };
+  // const handleUpdateMessage = async (messageId, formData, messages, setShowEditMessage) => {
+  //   console.log("MESSAGE ID:", messageId)
+  //   await dispatch(updateMessage(channelId, messageId, formData))
+  //   setShowEditMessage(null); // close the editing bar
+  // };
 
   const handleDeleteMessage = async (channelId, messageId) => {
     await dispatch(deleteChannelMessage(channelId, messageId));
@@ -81,7 +81,7 @@ const CurrentChannel = () => {
         <div className="messages-container">
           <Messages messages={Object.values(messages)}
           handleDeleteMessage={handleDeleteMessage}
-          handleUpdateMessage={handleUpdateMessage}
+          // handleUpdateMessage={handleUpdateMessage}
           />
         </div>
       )}
