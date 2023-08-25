@@ -75,3 +75,21 @@ input {
 .login_redirect:hover {
     color: #0fa7ea;
 }
+
+
+.social-links {
+    margin-top: 20px; /* Adjust this value as per your preference */
+    display: flex; /* To make the links horizontal */
+    gap: 20px; /* Spacing between the links */
+    justify-content: center; /* To center align the links */
+}
+
+.left_side_icon {
+    height: 50px; /* Existing value */
+    width: auto; /* Existing value */
+    transition: 0.3s; /* Existing value */
+}
+
+.left_side_icon:hover {
+    transform: scale(1.1); /* Existing value */
+}
