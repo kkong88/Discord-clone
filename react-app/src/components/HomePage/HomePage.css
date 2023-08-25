@@ -34,3 +34,25 @@
     line-height: 1.625;
     width: 820px;
   }
+
+.creator {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.social-links {
+  display: flex;           /* Flexbox */
+  gap: 20px;               /* Space between the links */
+  justify-content: center; /* Horizontally center the links */
+}
+
+.left_side_icon {
+  height: 50px;            /* Adjust based on your preference */
+  width: auto;             /* Maintain the image's aspect ratio */
+  transition: 0.3s;        /* Smooth transition for hover effect */
+}
+
+.left_side_icon:hover {
+  transform: scale(1.1);  /* Slightly enlarge the icon on hover */
+}
