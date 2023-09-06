@@ -1,6 +1,48 @@
-# Flask React Project
+# This-Cord Clone
+This is a clone of the popular app Discord using Flask and React
 
-This is the starter for the Flask React project.
+# Live Link
+https://this-cord-8tu7.onrender.com
+
+# Screen shots
+----
+Home Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694028797/Screen_Shot_2023-09-06_at_3.24.24_PM_gnauvg.png)
+
+---
+Sign up Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694028938/Screen_Shot_2023-09-06_at_3.24.46_PM_fpzish.png)
+
+---
+Login Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029107/Screen_Shot_2023-09-06_at_3.24.35_PM_r4vfwq.png)
+
+---
+Landing / Discovery page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029307/Screen_Shot_2023-09-06_at_3.24.58_PM_ozwdcn.png)
+
+---
+Create a Server
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029355/Screen_Shot_2023-09-06_at_3.25.09_PM_ommq1l.png)
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029883/Screen_Shot_2023-09-06_at_3.50.21_PM_l2f4my.png)
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029889/Screen_Shot_2023-09-06_at_3.50.29_PM_thwwbw.png)
+
+---
+Delete / Update a Server
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694030180/Screen_Shot_2023-09-06_at_3.56.05_PM_q5s30n.png)
+
+---
+Create a channel
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029440/Screen_Shot_2023-09-06_at_3.25.36_PM_q0apuz.png)
+
+---
+Channel/chat page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694029404/Screen_Shot_2023-09-06_at_3.25.25_PM_weunrv.png)
+
+---
+Update/Delete Channels
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694030047/Screen_Shot_2023-09-06_at_3.53.55_PM_pf89hb.png)
+
 
 ## Getting started
 1. Clone this repository (only this branch)
