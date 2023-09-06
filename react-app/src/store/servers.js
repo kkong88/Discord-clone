@@ -50,7 +50,6 @@ export const joinUserServer = (serverId, userId) => async (dispatch) => {
     body: JSON.stringify({ serverId, userId }),
   });
     const data = await res.json();
-    console.log(data)
     dispatch(addUserServer(data.server));
     return data.server;
   };

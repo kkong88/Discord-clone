@@ -65,7 +65,6 @@ export const updateChannel = (serverId, channel) => {
 };
 
 export const putChannel = (channel) => async (dispatch) => {
-  console.log(channel,"@@@@@@@@@")
   const res = await fetch(`/api/channels/${channel.id}`,
     {
       method: "PUT",
@@ -133,7 +132,6 @@ export const postMessage = (channelId, formData) => async (dispatch) => {
     const newMessage = await res.json();
 
     dispatch(addChannelMessage(newMessage));
-    console.log(newMessage,"LINE 135 in Channels reducer")
     return newMessage;
   };
 
@@ -146,7 +144,6 @@ export const updateChannelMessage = (message) => {
 
 export const updateMessage =
   (channelId, messageId, formData) => async (dispatch) => {
-    console.log(channelId, messageId, formData, `/api/channels/${channelId}/messages/${messageId}`)
     const res = await fetch(`/api/channels/${channelId}/messages/${messageId}`,{
         method: "PUT",
         body: formData,
@@ -154,7 +151,6 @@ export const updateMessage =
     );
     const updatedMessage = await res.json();
     dispatch(updateChannelMessage(updatedMessage));
-    console.log(updateMessage,"am i working?@!@!@!@?!@?")
     return updatedMessage;
   };
 
@@ -166,7 +162,6 @@ export const updateMessage =
   }
 
   export const deleteChannelMessage = (channelId, messageId) => async (dispatch) => {
-    console.log(channelId,messageId, "ASDFSADFSADFSDAFSADFDSFSADFASDFSADF")
     const res = await fetch(
       `/api/channels/${channelId}/messages/${messageId}`,
       {
